@@ -1,0 +1,22 @@
+.columna-container {
+  text-align: center;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  min-width: 222px;
+  max-width: fit-content;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 10px 0 10px;
+  padding: 0 10px 0 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.tareas-container {
+  min-height: inherit;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}

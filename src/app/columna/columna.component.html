@@ -1,0 +1,52 @@
+<div class="columna-container">
+  <h2>{{ nombre }}</h2>
+
+  <div cdkDropList
+    [cdkDropListData]="tareasColumna"
+    class="tareas-container"
+    (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let tarea of tareasColumna" cdkDrag>
+        <app-tarea [tareaId]="tarea.id"></app-tarea>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<hr>
+<div class="container d-flex justify-content-center">
+  <div class="" *ngFor="let columna of columnas">
+    <div class="text-center columna-container">
+      <h2>{{ columna.nombre }}</h2>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<hr>
+<app-tarea></app-tarea>
+-->
+
+

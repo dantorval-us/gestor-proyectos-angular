@@ -1,0 +1,9 @@
+<div class="gral-container">
+  <div class="tablero-container" cdkDropListGroup>
+    <h1>{{ nombreProyecto }}</h1>
+    
+    <ng-container *ngFor="let columna of columnas">
+      <app-columna [columnaId]="columna.id"></app-columna>
+    </ng-container>
+  </div>
+</div>
