@@ -5,5 +5,15 @@
     <ng-container *ngFor="let columna of columnas">
       <app-columna [columnaId]="columna.id"></app-columna>
     </ng-container>
+
+    <div *ngIf="nuevaColumnaVisible" class="nueva-columna-container">
+      <input type="text" style="margin-top: 5px;">
+    </div> 
+  
+    <button type="button" (click)="addColumnaVacia()"
+      style="border: none; padding: 0.5em 1em; background-color: rgba(211, 211, 211, 0.829); border-radius: 4px;">
+      + Nueva columna
+    </button>
+
   </div>
 </div>

@@ -15,11 +15,16 @@ export class TableroComponent implements OnInit {
 
   nombreProyecto: string = "Gestor de proyectos";
   columnas: Columna[] = [];
+  nuevaColumnaVisible = false;
 
   constructor(private columnaService:ColumnaService){};
 
   ngOnInit(): void {
     this.columnas = this.columnaService.getColumnas();
+  }
+
+  addColumnaVacia() {
+    this.nuevaColumnaVisible = !this.nuevaColumnaVisible;
   }
 
 }

@@ -1,5 +1,8 @@
 <div class="columna-container">
-  <h2>{{ nombre }}</h2>
+  <div class="cabecera-container">
+    <h2>{{ nombre }}</h2>
+    <button class="btn-close btn-cerrar"></button>
+  </div>
 
   <div cdkDropList
     [cdkDropListData]="tareasColumna"
