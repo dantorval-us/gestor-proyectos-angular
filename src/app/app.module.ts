@@ -10,21 +10,29 @@ import { ColumnaComponent } from './columna/columna.component';
 import { TableroComponent } from './tablero/tablero.component';
 import { TareaService } from './services/tarea.service';
 import { ColumnaService } from './services/columna.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { NuevaColumnaComponent } from './components/nueva-columna/nueva-columna.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TareaComponent,
     ColumnaComponent,
-    TableroComponent
+    TableroComponent,
+    NuevaColumnaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DragDropModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [TareaService, ColumnaService],
   bootstrap: [AppComponent]

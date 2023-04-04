@@ -1,5 +1,20 @@
 <div class="columna-container">
-  <h2>{{ nombre }}</h2>
+  
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2 style="margin: 0; text-align: center; flex-grow: 1; cursor: pointer;" *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion(columnaId!)">
+      {{ nombre }}
+    </h2>
+    <h2 style="margin: 0; text-align: center; flex-grow: 1;" *ngIf="modoEdicion" (keydown.enter)="updateColumna(columnaId!)">
+      <input [(ngModel)]="nombre"/>
+      <button style="padding: 0 5px; border: none; background-color: transparent;" (click)="updateColumna(columnaId!)">
+        <i class="bi bi-check" style="font-size: 20px; color: green;"></i>
+      </button>
+    </h2>
+    <button class="btn btn-outline-danger" style="padding: 0 5px;" (click)="deleteColumna(columnaId!)">
+      <i class="bi bi-x" style="font-size: 20px"></i>
+    </button>
+  </div>
+  
 
   <div cdkDropList
     [cdkDropListData]="tareasColumna"

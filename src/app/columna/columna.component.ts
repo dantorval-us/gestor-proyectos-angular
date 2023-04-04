@@ -1,7 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
 import { Component, Input, NgModule, OnInit } from '@angular/core';
-import { TAREAS } from '../mocks';
 import { Tarea } from '../models/tarea';
 import { ColumnaService } from '../services/columna.service';
 import { TareaService } from '../services/tarea.service';
@@ -14,17 +12,30 @@ import { TareaService } from '../services/tarea.service';
 
 export class ColumnaComponent implements OnInit {
 
-  @Input() columnaId = 0;
-  nombre: string = "";
-  tareas = TAREAS;
+  @Input() columnaId: string|undefined;
+  @Input() nombre: string = "";
   tareasColumna: Tarea[] = [];
+  modoEdicion = false;
 
   constructor(private columnaService:ColumnaService, private tareaService:TareaService) {};
 
   ngOnInit(): void {
-    this.nombre = this.columnaService.getColumna(this.columnaId).nombre;
-    this.tareasColumna = this.tareaService.getTareasColumna(this.columnaId);
   };
+
+  updateColumna(id:string) {
+      console.log("modo edicion -> lectura")
+      this.columnaService.updateColumna(id, this.nombre);
+      this.modoEdicion = false;
+  }
+
+  cambiaModoEdicion(id:string) {
+    console.log("modo lectura -> edicion")
+    this.modoEdicion = true;
+  }
+
+  async deleteColumna(id: string) {
+    const response = await this.columnaService.deleteColumna(id);
+  }
 
   drop(event: CdkDragDrop<Tarea[]>) {
     if (event.previousContainer === event.container) {

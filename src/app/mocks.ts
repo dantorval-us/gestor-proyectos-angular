@@ -1,10 +1,11 @@
+/*
 import { Columna } from './models/columna';
 import { Tarea } from './models/tarea';
 
 export const COLUMNAS: Columna[] = [
-  { id: 1, nombre: "Por hacer" },
-  { id: 2, nombre: "En progreso" },
-  { id: 3, nombre: "Finalizado" }
+  { id: "1", nombre: "Por hacer" },
+  { id: "2", nombre: "En progreso" },
+  { id: "3", nombre: "Finalizado" }
 ];
 
 export const TAREAS: Tarea[] = [
@@ -15,3 +16,4 @@ export const TAREAS: Tarea[] = [
   { id: 5, nombre: "Tarea 5", columna: 3},
   { id: 6, nombre: "Tarea 6", columna: 3}
 ];
+*/

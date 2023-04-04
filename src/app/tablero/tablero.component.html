@@ -3,7 +3,9 @@
     <h1>{{ nombreProyecto }}</h1>
     
     <ng-container *ngFor="let columna of columnas">
-      <app-columna [columnaId]="columna.id"></app-columna>
+      <app-columna [columnaId]="columna.id" [nombre]="columna.nombre"></app-columna>
     </ng-container>
+
+    <app-nueva-columna></app-nueva-columna>
   </div>
 </div>

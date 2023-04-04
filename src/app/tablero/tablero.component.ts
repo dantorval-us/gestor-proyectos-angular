@@ -1,8 +1,5 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
-import { Component, NgModule, OnInit } from '@angular/core';
-import { COLUMNAS } from '../mocks';
-import { Columna } from '../models/columna';
+import { Component, OnInit } from '@angular/core';
+import { ColumnaInterface } from '../interfaces/columna.interface';
 import { ColumnaService } from '../services/columna.service';
 
 @Component({
@@ -14,12 +11,25 @@ import { ColumnaService } from '../services/columna.service';
 export class TableroComponent implements OnInit {
 
   nombreProyecto: string = "Gestor de proyectos";
-  columnas: Columna[] = [];
+  columnas: ColumnaInterface[];
 
-  constructor(private columnaService:ColumnaService){};
+  constructor(
+    private columnaService:ColumnaService
+  ) {
+    this.columnas = [{
+      nombre: '',
+      posicion: 0
+    }];
+  };
 
   ngOnInit(): void {
-    this.columnas = this.columnaService.getColumnas();
+    this.getColumnas();
+  }
+
+  getColumnas() {
+    this.columnaService.getColumnas().subscribe(columnas => {
+      this.columnas = columnas;
+    })
   }
 
 }
