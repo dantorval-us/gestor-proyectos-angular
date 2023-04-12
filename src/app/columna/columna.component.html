@@ -1,6 +1,6 @@
-<div class="columna-container">
+<!-- <div class="columna-container"> -->
   
-  <div style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="display: flex; justify-content: space-between; align-items: center;" >
     <h2 style="margin: 0; text-align: center; flex-grow: 1; cursor: pointer;" *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion(columnaId!)">
       {{ nombre }}
     </h2>
@@ -16,16 +16,16 @@
   </div>
   
 
-  <div cdkDropList
+  <!-- <div cdkDropList
     [cdkDropListData]="tareasColumna"
     class="tareas-container"
     (cdkDropListDropped)="drop($event)">
     <div *ngFor="let tarea of tareasColumna" cdkDrag>
         <app-tarea [tareaId]="tarea.id"></app-tarea>
     </div>
-  </div>
+  </div> -->
 
-</div>
+<!-- </div> -->
 
 
 

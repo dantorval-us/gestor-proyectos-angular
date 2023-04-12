@@ -1,11 +1,15 @@
 <div class="gral-container">
-  <div class="tablero-container" cdkDropListGroup>
+  <!-- cdkDropListGroup -->
+  <div class="tablero-container" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
     <h1>{{ nombreProyecto }}</h1>
     
-    <ng-container *ngFor="let columna of columnas">
-      <app-columna [columnaId]="columna.id" [nombre]="columna.nombre"></app-columna>
-    </ng-container>
+    <div class="columna-container" *ngFor="let columna of columnas" cdkDragLockAxis="x" cdkDrag cdkDrag 
+    [cdkDragData]="{ columnaId: columna.id }">
+      <app-columna [columnaId]="columna.id" [nombre]="columna.nombre" [posicion]="columna.posicion"></app-columna>
+    </div>
 
     <app-nueva-columna></app-nueva-columna>
+
   </div>
+
 </div>

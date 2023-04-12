@@ -19,6 +19,21 @@
   padding: 10px 10px 10px 10px;
 }
 
+.columna-container {
+  text-align: center;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  min-width: 222px;
+  max-width: fit-content;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 10px 0 10px;
+  padding: 0 10px 0 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
@@ -34,4 +49,3 @@
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-

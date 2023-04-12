@@ -1,4 +1,4 @@
-.columna-container {
+/* .columna-container {
   text-align: center;
   border: solid 1px #ccc;
   min-height: 60px;
@@ -11,7 +11,7 @@
   padding: 0 10px 0 10px;
   display: inline-block;
   vertical-align: top;
-}
+} */
 
 .tareas-container {
   min-height: inherit;
@@ -20,3 +20,4 @@
 .cdk-drag-placeholder {
   opacity: 0;
 }
+
