@@ -32,7 +32,7 @@ export class NuevaColumnaComponent implements OnInit {
 
     await this.columnaService.addColumna(this.formulario.value);
 
-    this.formulario.value.nombre = '';
+    this.formulario.value.nombre = ''; //para que era esto?
   }
 
   async getPosicion() {

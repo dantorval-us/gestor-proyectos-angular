@@ -1,4 +1,17 @@
-<p class="tarjeta">
-  {{ nombre }}
-</p>
+<div class="tarjeta">
+
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="margin: 0; text-align: center; flex-grow: 1;" *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion()">
+      {{ nombre }}
+    </h3>
+    <h3 *ngIf="modoEdicion" (keydown.enter)="updateTarea()">
+      <input [(ngModel)]="nombre"/>
+    </h3>
+    
+    <button class="btn" style="padding: 0 5px;" (click)="deleteTarea()">
+      <i class="bi bi-x" style="font-size: 15px"></i>
+    </button>
+  </div>
+    
+</div>
 

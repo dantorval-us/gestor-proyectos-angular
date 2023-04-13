@@ -15,6 +15,20 @@
     </button>
   </div>
   
+  <br>
+
+  <div class="" *ngFor="let tarea of tareasColumna">
+      <app-tarea [tareaId]="tarea.id" [nombre]="tarea.nombreTarea"></app-tarea>
+  </div>
+
+  <br>
+  
+  <form [formGroup]="formulario" (ngSubmit)="addTarea()">
+    <div style="display: inline;">
+      <input type="text" formControlName="nombreTarea" placeholder="Nueva tarea" #nombreTarea>
+      <input type="submit" value="Añadir" class="btn btn-info" (click)="nombreTarea.value=''">
+    </div>
+  </form>
 
   <!-- <div cdkDropList
     [cdkDropListData]="tareasColumna"
