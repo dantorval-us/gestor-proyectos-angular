@@ -32,13 +32,13 @@ export class TableroComponent implements OnInit {
       this.columnas = columnas;
     })
   }
-
+  
   drop(event: CdkDragDrop<ColumnaInterface[]>) {
     const posPrevia = event.previousIndex;
     const posNueva = event.currentIndex;
     const columnaId = event.item.data.columnaId;
     moveItemInArray(this.columnas, posPrevia, posNueva);
-    this.updatePosicionColumna(columnaId, posPrevia, posNueva);
+    //this.updatePosicionColumna(columnaId, posPrevia, posNueva);
   }
 
   async updatePosicionColumna(id: string, posPrevia:number, posNueva:number) {

@@ -1,81 +1,35 @@
-<!-- <div class="columna-container"> -->
-  
-  <div style="display: flex; justify-content: space-between; align-items: center;" >
-    <h2 style="margin: 0; text-align: center; flex-grow: 1; cursor: pointer;" *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion(columnaId!)">
-      {{ nombre }}
-    </h2>
-    <h2 style="margin: 0; text-align: center; flex-grow: 1;" *ngIf="modoEdicion" (keydown.enter)="updateColumna(columnaId!)">
-      <input [(ngModel)]="nombre"/>
-      <button style="padding: 0 5px; border: none; background-color: transparent;" (click)="updateColumna(columnaId!)">
-        <i class="bi bi-check" style="font-size: 20px; color: green;"></i>
+  <div class="columna-container">
+    <div class="cabecera-container">
+      <h2 *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion()">
+        {{ nombre }}
+      </h2>
+
+      <h2 *ngIf="modoEdicion" (keydown.enter)="updateColumna(columnaId!)">
+        <input [(ngModel)]="nombre"/>
+        <button (click)="updateColumna(columnaId!)">
+          <i class="bi bi-check"></i>
+        </button>
+      </h2>
+
+      <button class="btn" (click)="deleteColumna(columnaId!)">
+        <i class="bi bi-x"></i>
       </button>
-    </h2>
-    <button class="btn btn-outline-danger" style="padding: 0 5px;" (click)="deleteColumna(columnaId!)">
-      <i class="bi bi-x" style="font-size: 20px"></i>
-    </button>
-  </div>
+    </div>
   
-  <br>
+    <div cdkDropList
+      [cdkDropListData]="tareasColumna"
+      class="tareas-container"
+      (cdkDropListDropped)="drop($event)">
+      <div *ngFor="let tarea of tareasColumna" cdkDrag [cdkDragData]="{ tareaId: tarea.id, 
+          columnaId: tarea.columna, posicion: tarea.posicion}">
+          <app-tarea [tareaId]="tarea.id" [nombre]="tarea.nombreTarea" [posicion]="tarea.posicion" [idColumna]="tarea.columna">
+          </app-tarea>
+      </div>
+    </div>
 
-  <div class="" *ngFor="let tarea of tareasColumna">
-      <app-tarea [tareaId]="tarea.id" [nombre]="tarea.nombreTarea"></app-tarea>
-  </div>
-
-  <br>
-  
-  <form [formGroup]="formulario" (ngSubmit)="addTarea()">
-    <div style="display: inline;">
+    <form [formGroup]="formulario" (ngSubmit)="addTarea()">
       <input type="text" formControlName="nombreTarea" placeholder="Nueva tarea" #nombreTarea>
       <input type="submit" value="Añadir" class="btn btn-info" (click)="nombreTarea.value=''">
-    </div>
-  </form>
-
-  <!-- <div cdkDropList
-    [cdkDropListData]="tareasColumna"
-    class="tareas-container"
-    (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let tarea of tareasColumna" cdkDrag>
-        <app-tarea [tareaId]="tarea.id"></app-tarea>
-    </div>
-  </div> -->
-
-<!-- </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<hr>
-<div class="container d-flex justify-content-center">
-  <div class="" *ngFor="let columna of columnas">
-    <div class="text-center columna-container">
-      <h2>{{ columna.nombre }}</h2>
-    </div>
+    </form>
+  
   </div>
-</div>
-
-
-
-
-
-<hr>
-<app-tarea></app-tarea>
--->
-
-

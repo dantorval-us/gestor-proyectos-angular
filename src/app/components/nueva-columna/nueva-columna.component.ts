@@ -27,12 +27,8 @@ export class NuevaColumnaComponent implements OnInit {
 
   async addColumna() {
     if (!this.formulario.value.nombre) { return; }
-
     this.formulario.value.posicion = await this.getPosicion();
-
     await this.columnaService.addColumna(this.formulario.value);
-
-    this.formulario.value.nombre = ''; //para que era esto?
   }
 
   async getPosicion() {

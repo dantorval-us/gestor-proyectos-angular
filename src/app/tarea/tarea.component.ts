@@ -10,6 +10,8 @@ export class TareaComponent implements OnInit {
 
   @Input() tareaId: string|undefined;
   @Input() nombre: string = "";
+  @Input() posicion: number = 0;
+  @Input() idColumna: string = "";
 
   constructor(private tareaService:TareaService ) {};
 
@@ -28,8 +30,7 @@ export class TareaComponent implements OnInit {
   }
 
   deleteTarea() {
-    this.tareaService.deleteTarea(this.tareaId!);
+    this.tareaService.deleteTarea(this.tareaId!, this.posicion, this.idColumna);
   }
- 
 
 }

@@ -1,7 +1,6 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, Input, Output, NgModule, OnInit, EventEmitter, HostListener } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Tarea } from '../models/tarea';
 import { ColumnaService } from '../services/columna.service';
 import { TareaService } from '../services/tarea.service';
 import { TareaInterface } from '../interfaces/tarea.interface';
@@ -34,28 +33,31 @@ export class ColumnaComponent implements OnInit {
     };
 
   ngOnInit(): void {
-    if(this.columnaId) {this.getTareasColumna()};
+    this.columnaId?.length && this.getTareasColumna();
   };
 
-  updateColumna(id:string) {
+  updateColumna(id:string):void {
       this.columnaService.updateColumna(id, this.nombre);
       this.modoEdicion = false;
   }
 
-  cambiaModoEdicion(id:string) {
+  cambiaModoEdicion():void {
     this.modoEdicion = true;
   }
 
-  deleteColumna(id: string) {
+  deleteColumna(id: string):void {
     this.columnaService.deleteColumna(id);
     this.updateIndices(id);
   }
 
-  updateIndices(id: string) {
+  updateIndices(id: string):void {
     this.columnaService.updateIndicesService(id, this.posicion!);
   }
-  
-  drop(event: CdkDragDrop<Tarea[]>) {
+
+  /* Tareas: */
+  drop(event: CdkDragDrop<TareaInterface[]>):void {
+    const columnaId = this.columnaId!;
+    
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -65,24 +67,28 @@ export class ColumnaComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
+      this.tareaService.updateColumnaTarea(event.item.data.tareaId, columnaId);
     }
+    this.tareaService.updateAllPosicionesColumna(columnaId, event.container.data, event.previousContainer.data);
   }
 
-  addTarea() {
+  async addTarea() {
     if (!this.formulario.value.nombreTarea) { return; }
-    
-    this.formulario.get('columna')?.setValue(this.columnaId); 
-    
+    this.formulario.get('columna')?.setValue(this.columnaId);
+    this.formulario.value.posicion = await this.addPosicionTarea();
     this.tareaService.addTarea(this.formulario.value);
   }
 
-  getTareas() { // se podría borrar? y el this.tareas?
-    this.tareaService.getTareas().subscribe(tareas => {
-      this.tareas = tareas;
-    })
-  }
+  async addPosicionTarea() {
+    let pos = await this.tareaService.getNumTareasColumna(this.columnaId!);
+    if(pos == 0) {
+      return 1;
+    } else {
+      return pos + 1;
+    };
+  };
 
-  getTareasColumna() {
+  getTareasColumna():void {
     this.tareaService.getTareasColumna(this.columnaId!).subscribe(tareas => {
       this.tareasColumna = tareas;
     });

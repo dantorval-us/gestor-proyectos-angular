@@ -56,7 +56,6 @@ export class ColumnaService {
 
   updatePosicion(id:string, nuevaPosicion:number) {
     const columnaRef = doc(this.firestore, `columnas/${id}`);
-
     return updateDoc(columnaRef, {posicion: nuevaPosicion});
   }
 
@@ -81,12 +80,13 @@ export class ColumnaService {
   async getNumColumnas() {
     const columnaRef = collection(this.firestore, 'columnas');
     const snapshot = await getCountFromServer(columnaRef);
+    console.log("snapshot.data().count: " + snapshot.data().count)
     return snapshot.data().count;
   }
 
   async getPosicion() {
     const columnaRef = collection(this.firestore, 'columnas');
-    const q =  query(columnaRef, orderBy("posicion", "desc"), limit(1))
+    const q = query(columnaRef, orderBy("posicion", "desc"), limit(1))
     return collectionData(q, {idField: 'id'}) as Observable<ColumnaInterface[]>;
   }
 
