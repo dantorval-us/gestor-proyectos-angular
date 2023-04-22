@@ -23,7 +23,7 @@ export class ColumnaComponent implements OnInit {
   formulario: FormGroup;
 
   constructor(
-    private columnaService:ColumnaService, 
+    private columnaService:ColumnaService,
     private tareaService:TareaService
   ) {
       this.formulario = new FormGroup({
@@ -57,19 +57,19 @@ export class ColumnaComponent implements OnInit {
   /* Tareas: */
   drop(event: CdkDragDrop<TareaInterface[]>):void {
     const columnaId = this.columnaId!;
-    
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      this.tareaService.updateAllPosicionesColumna(columnaId, event.container.data);//
     } else {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex,
-      );
-      this.tareaService.updateColumnaTarea(event.item.data.tareaId, columnaId);
+        );
+      this.tareaService.dropTransaction(event.item.data.tareaId, columnaId, event.container.data, event.previousContainer.data, event.currentIndex);
     }
-    this.tareaService.updateAllPosicionesColumna(columnaId, event.container.data, event.previousContainer.data);
   }
 
   async addTarea() {
@@ -93,5 +93,5 @@ export class ColumnaComponent implements OnInit {
       this.tareasColumna = tareas;
     });
   }
- 
+
 }
