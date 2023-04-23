@@ -15,6 +15,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { NuevaColumnaComponent } from './components/nueva-columna/nueva-columna.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProyectoComponent } from './components/proyecto/proyecto.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { NuevaColumnaComponent } from './components/nueva-columna/nueva-columna.
     TareaComponent,
     ColumnaComponent,
     TableroComponent,
-    NuevaColumnaComponent
+    NuevaColumnaComponent,
+    DashboardComponent,
+    ProyectoComponent
   ],
   imports: [
     BrowserModule,

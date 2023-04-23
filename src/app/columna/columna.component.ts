@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ColumnaService } from '../services/columna.service';
 import { TareaService } from '../services/tarea.service';
 import { TareaInterface } from '../interfaces/tarea.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-columna',
@@ -19,12 +20,14 @@ export class ColumnaComponent implements OnInit {
   tareas: TareaInterface[] = [];
   tareasColumna: TareaInterface[] = []
   modoEdicion = false;
+  idProyecto = String(this.route.snapshot.paramMap.get('id'));
 
   formulario: FormGroup;
 
   constructor(
     private columnaService:ColumnaService,
-    private tareaService:TareaService
+    private tareaService:TareaService,
+    private route: ActivatedRoute
   ) {
       this.formulario = new FormGroup({
         nombreTarea: new FormControl(),
@@ -47,11 +50,11 @@ export class ColumnaComponent implements OnInit {
 
   deleteColumna(id: string):void {
     this.columnaService.deleteColumna(id);
-    this.updateIndices(id);
+    this.updateIndices(this.idProyecto);
   }
 
-  updateIndices(id: string):void {
-    this.columnaService.updateIndicesService(id, this.posicion!);
+  updateIndices(idProyecto:string):void {
+    this.columnaService.updateIndicesService(this.posicion!, idProyecto);
   }
 
   /* Tareas: */
@@ -60,7 +63,7 @@ export class ColumnaComponent implements OnInit {
 
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      this.tareaService.updateAllPosicionesColumna(columnaId, event.container.data);//
+      this.tareaService.updateAllPosicionesColumna(columnaId, event.container.data);
     } else {
       transferArrayItem(
         event.previousContainer.data,

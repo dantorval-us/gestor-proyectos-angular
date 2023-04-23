@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { collection, Firestore, addDoc, collectionData, doc, deleteDoc, query, where, getCountFromServer, orderBy, limit, updateDoc, 
-          getDocs, getDoc, FieldValue, increment } from '@angular/fire/firestore';
+          getDocs } from '@angular/fire/firestore';
 import { ColumnaInterface } from '../interfaces/columna.interface';
 import { Observable } from 'rxjs';
 
@@ -16,9 +16,9 @@ export class ColumnaService {
     return addDoc(columnaRef, columna);
   }
 
-  getColumnas(): Observable<ColumnaInterface[]> {
+  getColumnas(idProyecto: string): Observable<ColumnaInterface[]> {
     const columnaRef = collection(this.firestore, 'columnas');
-    const q = query(columnaRef, orderBy("posicion"))
+    const q = query(columnaRef, where("proyecto", "==", idProyecto), orderBy("posicion"))
     return collectionData(q, {idField: 'id'}) as Observable<ColumnaInterface[]>;
   }
 
@@ -58,10 +58,10 @@ export class ColumnaService {
     const columnaRef = doc(this.firestore, `columnas/${id}`);
     return updateDoc(columnaRef, {posicion: nuevaPosicion});
   }
-
-  async updateIndicesService(id:string, pos: number) {
+  
+  async updateIndicesService(pos: number, idProyecto:string) {
     const columnaRef = collection(this.firestore, 'columnas');
-    const q = query(columnaRef, where("posicion", ">", pos))
+    const q = query(columnaRef, where("proyecto", "==", idProyecto), where("posicion", ">", pos))
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach(async (doc) => {
@@ -77,16 +77,16 @@ export class ColumnaService {
     return deleteDoc(columnaRef);
   }
 
-  async getNumColumnas() {
+  async getNumColumnas(idProyecto: string) {
     const columnaRef = collection(this.firestore, 'columnas');
-    const snapshot = await getCountFromServer(columnaRef);
-    console.log("snapshot.data().count: " + snapshot.data().count)
+    const q = query(columnaRef, where("proyecto", "==", idProyecto));
+    const snapshot = await getCountFromServer(q);
     return snapshot.data().count;
   }
 
-  async getPosicion() {
+  async getLastPosicion(idProyecto: string) {
     const columnaRef = collection(this.firestore, 'columnas');
-    const q = query(columnaRef, orderBy("posicion", "desc"), limit(1))
+    const q = query(columnaRef, where("proyecto", "==", idProyecto), orderBy("posicion", "desc"), limit(1))
     return collectionData(q, {idField: 'id'}) as Observable<ColumnaInterface[]>;
   }
 

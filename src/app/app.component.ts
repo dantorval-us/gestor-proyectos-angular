@@ -1,7 +1,4 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
-import { Columna } from './models/columna';
-import { Tablero } from './models/tablero';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +6,7 @@ import { Tablero } from './models/tablero';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  titulo:string = 'Gestor de proyectos';
 
 }
