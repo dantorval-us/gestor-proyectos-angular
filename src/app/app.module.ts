@@ -17,6 +17,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { NuevaColumnaComponent } from './components/nueva-columna/nueva-columna.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProyectoComponent } from './components/proyecto/proyecto.component';
+import { NuevoProyectoComponent } from './components/nuevo-proyecto/nuevo-proyecto.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProyectoComponent } from './components/proyecto/proyecto.component';
     TableroComponent,
     NuevaColumnaComponent,
     DashboardComponent,
-    ProyectoComponent
+    ProyectoComponent,
+    NuevoProyectoComponent
   ],
   imports: [
     BrowserModule,

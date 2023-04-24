@@ -1,0 +1,4 @@
+<form [formGroup]="formulario" (ngSubmit)="addProyecto()">
+  <input type="text" formControlName="nombre" placeholder="Nuevo proyecto" #nombreProyecto>
+  <input type="submit" value="Añadir" class="btn btn-info" (click)="nombreProyecto.value=''">
+</form>

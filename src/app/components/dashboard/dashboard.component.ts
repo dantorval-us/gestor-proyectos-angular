@@ -11,14 +11,17 @@ export class DashboardComponent implements OnInit {
 
   proyectos: ProyectoInterface[] = [];
 
-  constructor(private columnaService:ProyectoService) {};
+  constructor(
+    private proyectoService:ProyectoService
+    ) {
+    };
 
   ngOnInit(): void {
     this.getProyectos();
   }
 
   getProyectos() {
-    this.columnaService.getProyectos().subscribe(proyectos => {
+    this.proyectoService.getProyectos().subscribe(proyectos => {
       this.proyectos = proyectos;
     });
   }

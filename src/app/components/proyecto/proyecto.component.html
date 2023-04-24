@@ -1,1 +1,18 @@
-<h3>{{ nombre }}</h3>
+<div style="display: inline-flex;">
+
+  <h3 *ngIf="!modoEdicion" >
+    {{ nombre }}
+  </h3>
+
+  <h3 *ngIf="modoEdicion" (keydown.enter)="updateProyecto()" (click)="cambiaModoEdicion($event)">
+    <input [(ngModel)]="nombre"/>
+  </h3>
+
+  <button *ngIf="!modoEdicion" type="button" class="btn" (click)="cambiaModoEdicion($event)">
+    Cambiar nombre
+  </button>
+
+  <button type="button" class="btn" (click)="deleteProyecto($event, proyectoId!)">
+    <i class="bi bi-x"></i>
+  </button>
+</div>
