@@ -18,6 +18,8 @@ import { NuevaColumnaComponent } from './components/nueva-columna/nueva-columna.
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProyectoComponent } from './components/proyecto/proyecto.component';
 import { NuevoProyectoComponent } from './components/nuevo-proyecto/nuevo-proyecto.component';
+import { LoginComponent } from './components/login/login.component';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { NuevoProyectoComponent } from './components/nuevo-proyecto/nuevo-proyec
     NuevaColumnaComponent,
     DashboardComponent,
     ProyectoComponent,
-    NuevoProyectoComponent
+    NuevoProyectoComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { NuevoProyectoComponent } from './components/nuevo-proyecto/nuevo-proyec
     FormsModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth())
   ],
   providers: [TareaService, ColumnaService],
   bootstrap: [AppComponent]

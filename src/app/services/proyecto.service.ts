@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, orderBy, query, updateDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, orderBy, query, updateDoc, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { ProyectoInterface } from '../interfaces/proyecto.interface';
 
@@ -15,9 +15,9 @@ export class ProyectoService {
     return addDoc(proyectoRef, proyecto);
   }
 
-  getProyectos(): Observable<ProyectoInterface[]> {
+  getProyectos(usuario: string): Observable<ProyectoInterface[]> {
     const proyectoRef = collection(this.firestore, 'proyectos');
-    const q = query(proyectoRef, orderBy("nombre"));
+    const q = query(proyectoRef, where("usuario", "==", usuario), orderBy("nombre"));
     return collectionData(q, {idField: 'id'}) as Observable<ProyectoInterface[]>;
   }
 

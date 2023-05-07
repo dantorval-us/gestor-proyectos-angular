@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { getAuth } from 'firebase/auth';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 export class NuevoProyectoComponent {
 
   formulario: FormGroup;
+  auth = getAuth().currentUser?.uid;
 
   constructor(
     private columnaService:ProyectoService
@@ -21,6 +23,7 @@ export class NuevoProyectoComponent {
 
   addProyecto() {
     if (!this.formulario.value.nombre) { return; }
+    this.formulario.value.usuario = this.auth;
     this.columnaService.addProyecto(this.formulario.value);
   }
 

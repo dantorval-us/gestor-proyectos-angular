@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getAuth } from 'firebase/auth';
 import { ProyectoInterface } from 'src/app/interfaces/proyecto.interface';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 
@@ -10,18 +11,18 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 export class DashboardComponent implements OnInit {
 
   proyectos: ProyectoInterface[] = [];
+  auth = getAuth().currentUser?.uid;
 
   constructor(
     private proyectoService:ProyectoService
-    ) {
-    };
+    ) {};
 
   ngOnInit(): void {
     this.getProyectos();
   }
 
   getProyectos() {
-    this.proyectoService.getProyectos().subscribe(proyectos => {
+    this.proyectoService.getProyectos(this.auth!).subscribe(proyectos => {
       this.proyectos = proyectos;
     });
   }

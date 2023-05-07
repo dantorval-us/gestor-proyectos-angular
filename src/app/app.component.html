@@ -1,7 +1,11 @@
-<h1>{{titulo}}</h1>
 
-<nav>
-  <a routerLink="/">Inicio</a>
-</nav>
+<ng-container *ngIf="!isLoginPage">
+  <h1>{{titulo}}</h1>
+  
+  <nav>
+    <a routerLink="/">Inicio</a>
+    <button (click)="onClick()" class="btn btn-outline-danger mt-5">Logout</button>
+  </nav>
+</ng-container>
 
 <router-outlet></router-outlet>
