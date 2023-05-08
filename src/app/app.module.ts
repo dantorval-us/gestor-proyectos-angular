@@ -5,6 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TareaComponent } from './tarea/tarea.component';
 import { ColumnaComponent } from './columna/columna.component';
 import { TableroComponent } from './tablero/tablero.component';
@@ -20,6 +26,7 @@ import { ProyectoComponent } from './components/proyecto/proyecto.component';
 import { NuevoProyectoComponent } from './components/nuevo-proyecto/nuevo-proyecto.component';
 import { LoginComponent } from './components/login/login.component';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { ProyectoService } from './services/proyecto.service';
 
 @NgModule({
   declarations: [
@@ -38,13 +45,25 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     AppRoutingModule,
     BrowserAnimationsModule,
     DragDropModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth())
   ],
-  providers: [TareaService, ColumnaService],
+  providers: [
+    TareaService, 
+    ColumnaService,
+    ProyectoService,
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

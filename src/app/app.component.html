@@ -1,11 +1,13 @@
-
 <ng-container *ngIf="!isLoginPage">
-  <h1>{{titulo}}</h1>
   
-  <nav>
-    <a routerLink="/">Inicio</a>
-    <button (click)="onClick()" class="btn btn-outline-danger mt-5">Logout</button>
-  </nav>
+  <header class="d-flex mb-3 align-items-center">
+    <h1 class="p-2">{{titulo}}</h1>
+    <a routerLink="/" class="p-2">Panel</a>
+    <a routerLink="/login" class="ms-auto p-2 desconectar" (click)="onClick()">
+      <i class="bi bi-box-arrow-right">&nbsp;</i><span>Desconectar</span>
+    </a>
+  </header>
+  
 </ng-container>
 
 <router-outlet></router-outlet>

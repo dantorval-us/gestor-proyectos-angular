@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { getAuth } from 'firebase/auth';
 import { ProyectoInterface } from 'src/app/interfaces/proyecto.interface';
 import { ProyectoService } from 'src/app/services/proyecto.service';
+import { NuevoProyectoComponent } from '../nuevo-proyecto/nuevo-proyecto.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +16,8 @@ export class DashboardComponent implements OnInit {
   auth = getAuth().currentUser?.uid;
 
   constructor(
-    private proyectoService:ProyectoService
+    private proyectoService:ProyectoService,
+    public dialog: MatDialog
     ) {};
 
   ngOnInit(): void {
@@ -24,6 +27,12 @@ export class DashboardComponent implements OnInit {
   getProyectos() {
     this.proyectoService.getProyectos(this.auth!).subscribe(proyectos => {
       this.proyectos = proyectos;
+    });
+  }
+
+  openDialog(): void {
+    this.dialog.open(NuevoProyectoComponent, {
+      data: {},
     });
   }
 

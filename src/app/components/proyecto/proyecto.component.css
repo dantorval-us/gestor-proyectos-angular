@@ -1,0 +1,23 @@
+i {
+  color: var(--secondary-color);
+}
+
+.eliminar, .eliminar .mat-icon {
+  color: var(--danger-color);
+}
+
+.mat-icon-button {
+  width: 2.3rem;
+  height: 2.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.mat-icon-button:hover {
+  color: #000000;
+  background-color: #e4e4e4;
+}
+

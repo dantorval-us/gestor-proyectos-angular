@@ -4,6 +4,11 @@
 	box-sizing: border-box;
 }
 
+h1 {
+  margin: 3rem 10% 3rem 10%;
+  text-align: center;
+}
+
 p {
   text-align: center;
   font-size: 0.875rem;
@@ -27,9 +32,8 @@ p {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #ebeeef;
+  background: var(--fondo);
 }
-
 
 .wrap-login100 {
   width: 670px;
@@ -37,6 +41,7 @@ p {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  margin-top: -15vh;
 }
 
 .login100-form-title {
@@ -112,5 +117,5 @@ p {
 }
 
 .login {
-  margin: 10%;
+  margin: 5% 10% 10% 10%;
 }

@@ -1,4 +1,38 @@
-<form [formGroup]="formulario" (ngSubmit)="addProyecto()">
-  <input type="text" formControlName="nombre" placeholder="Nuevo proyecto" #nombreProyecto>
-  <input type="submit" value="Añadir" class="btn btn-info" (click)="nombreProyecto.value=''">
+<div *ngIf="numProyectos != 0 && numProyectos !== undefined" class="d-flex justify-content-center">
+
+  <button id="crear-tablero-btn" *ngIf="!crearTablero" mat-icon-button (click)="cambiaCrearTablero($event)" (click)="enfocarNombre()">
+    <mat-icon>playlist_add</mat-icon>
+    <span>Crear nuevo tablero</span>
+  </button>
+
+  <form *ngIf="crearTablero" [formGroup]="formulario" (ngSubmit)="addProyecto(); formulario.reset()" (keyboard.enter)="addProyecto()">
+    <mat-form-field>
+      <mat-label>Nombre del tablero</mat-label>
+      <input matInput id="nombreTablero" formControlName="nombre" #nombre>
+      <button type="submit" matSuffix mat-icon-button (click)="cambiaCrearTablero($event)" (click)="nombre.value='dfasdg'">
+        <mat-icon>check</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+
+</div>
+
+<!-- Primer tablero -->
+<form *ngIf="numProyectos === undefined" class="tablero-vacio" [formGroup]="formulario" (ngSubmit)="addProyecto()">
+  <div mat-dialog-content>
+  
+    <p>Un buen nombre debe ser corto y reflejar el propósito del tablero.</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre del tablero</mat-label>
+      <input type="text" matInput formControlName="nombre" [formControl]="nombreFormControl">
+      <mat-error *ngIf="nombreFormControl.hasError('required')">
+        El nombre está vacío
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="d-flex justify-content-between">
+    <button type="button" mat-button class="text-danger" (click)="dialogRef.close()">Cancelar</button>
+    <button type="submit" mat-button (click)="onCrear()">Crear</button>
+  </div>
+
 </form>
