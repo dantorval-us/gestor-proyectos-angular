@@ -15,7 +15,9 @@ export class TareaComponent implements OnInit {
 
   constructor(private tareaService:TareaService ) {};
 
-  modoEdicion = false;
+  modoEdicion:boolean = false;
+  muestraBtnMas:boolean = false;
+  desplegado:boolean = false;
 
   ngOnInit(): void {
   }
@@ -25,12 +27,35 @@ export class TareaComponent implements OnInit {
     this.modoEdicion = false;
   }
 
-  cambiaModoEdicion() {
-    this.modoEdicion = true;
-  }
-
   deleteTarea() {
     this.tareaService.deleteTarea(this.tareaId!, this.posicion, this.idColumna);
+  }
+  
+  cambiaModoEdicion(): void {
+    this.modoEdicion = !this.modoEdicion;
+  }
+
+  enfocarNombre(): void {
+    setTimeout(() => {
+      document.getElementById("nombre")?.focus()
+    }, 0);
+  }
+
+  mostrarBtnMas() {
+    this.muestraBtnMas = true;
+  }
+
+  ocultaBtnMas() {
+    if(this.desplegado==false) {
+      this.muestraBtnMas = false;
+    }
+  }
+
+  despliega() {
+    this.desplegado = true;
+    setTimeout(() => {
+      this.desplegado = false;
+    }, 300);
   }
 
 }

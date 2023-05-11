@@ -3,6 +3,9 @@ import { ColumnaInterface } from '../interfaces/columna.interface';
 import { ColumnaService } from '../services/columna.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute } from '@angular/router';
+import { ProyectoService } from '../services/proyecto.service';
+import { MatDialog } from '@angular/material/dialog';
+import { NuevaColumnaComponent } from '../components/nueva-columna/nueva-columna.component';
 
 @Component({
   selector: 'app-tablero',
@@ -12,12 +15,15 @@ import { ActivatedRoute } from '@angular/router';
 
 export class TableroComponent implements OnInit {
 
-  nombreProyecto: string = "Gestor de proyectos";
   columnas: ColumnaInterface[];
+  idProyecto = String(this.route.snapshot.paramMap.get('id'));
+  nombreProyecto: string = "";
 
   constructor(
     private columnaService: ColumnaService,
+    private proyectoService: ProyectoService,
     private route: ActivatedRoute,
+    public dialog: MatDialog,
   ) {
     this.columnas = [{
       nombre: '',
@@ -28,6 +34,11 @@ export class TableroComponent implements OnInit {
 
   ngOnInit(): void {
     this.getColumnas();
+    this.getProyecto();
+  }
+
+  async getProyecto() {
+    this.nombreProyecto = await this.proyectoService.getProyecto(this.idProyecto);
   }
 
   getColumnas() {
@@ -60,6 +71,12 @@ export class TableroComponent implements OnInit {
     }
 
     this.columnaService.updatePosicion(id, posNueMasUno);
+  }
+
+  openDialog(): void {
+    this.dialog.open(NuevaColumnaComponent, {
+      data: {idProyecto: this.route.snapshot.paramMap.get('id')}
+    });
   }
 
 }

@@ -1,9 +1,14 @@
+h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .columna-container {
   text-align: center;
   border: solid 1px #ccc;
-  min-height: 60px;
-  min-width: 222px;
-  max-width: fit-content;
+  min-height: 100%;
+  width: 222px;
   background: white;
   border-radius: 4px;
   overflow: hidden;
@@ -14,12 +19,6 @@
   position: relative;
 }
 
-.cabecera-container{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 .btn-cerrar{
   position: absolute;
   right: 0;
@@ -28,6 +27,22 @@
 
 .tareas-container {
   min-height: inherit;
+}
+
+.eliminar, .eliminar .mat-icon {
+  color: var(--danger-color);
+}
+
+.pie {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.pie:hover { 
+  background-color: rgb(245, 245, 245);
+  border-radius: 7px;
 }
 
 .cdk-drag-preview {

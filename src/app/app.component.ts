@@ -9,9 +9,8 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  titulo:string = 'Gestor de proyectos';
+  titulo: string = 'Gestor de proyectos';
   public isLoginPage!: boolean;
-
 
   constructor(
     private authService: AuthService,

@@ -1,6 +1,16 @@
 <form [formGroup]="formulario" (ngSubmit)="addColumna()">
-  <div style="display: inline;">
-    <input type="text" formControlName="nombre" placeholder="Nueva columna" #nombreColumna>
-    <input type="submit" value="Añadir" class="btn btn-info" (click)="nombreColumna.value=''">
+  <div mat-dialog-content>
+    <h3>Nueva columna</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input type="text" matInput formControlName="nombre" [formControl]="nombreFormControl">
+      <mat-error *ngIf="nombreFormControl.hasError('required')">
+        El nombre está vacío
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="d-flex justify-content-between">
+    <button type="button" mat-button class="text-danger" (click)="dialogRef.close()">Cancelar</button>
+    <button type="submit" mat-button (click)="onCrear()">Crear</button>
   </div>
 </form>

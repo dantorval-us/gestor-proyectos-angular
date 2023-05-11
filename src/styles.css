@@ -10,3 +10,22 @@
 html, body { height: 100%; background: var(--fondo) !important; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+button[type="submit"] {
+  color: var(--secondary-color);
+}
+
+.btn-cuadrado[mat-icon-button] {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  transition: background-color 0.3s ease;
+  line-height: 0;
+}
+
+.mat-icon-button:hover {
+  color: #000000;
+  background-color: #e4e4e4;
+}

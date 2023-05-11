@@ -2,22 +2,22 @@
 
   <div class="tablero-container">
     <h1>{{ nombreProyecto }}</h1>
+      <div class="columna-container"
+        cdkDropList 
+        [cdkDropListData]="columnas"
+        cdkDropListOrientation="horizontal" 
+        (cdkDropListDropped)="drop($event)"
+        cdkDropListGroup>
+        <div class="columna-box" *ngFor="let columna of columnas"
+          cdkDrag cdkDragLockAxis="x" [cdkDragData]="{ columnaId: columna.id }">
+          <app-columna [columnaId]="columna.id" [nombre]="columna.nombre" [posicion]="columna.posicion">
+          </app-columna>
+        </div>
 
-    <div class="columna-container"
-      cdkDropList 
-      [cdkDropListData]="columnas"
-      cdkDropListOrientation="horizontal" 
-      (cdkDropListDropped)="drop($event)"
-      cdkDropListGroup>
-      <div class="columna-box" *ngFor="let columna of columnas"
-        cdkDrag cdkDragLockAxis="x" [cdkDragData]="{ columnaId: columna.id }">
-        <app-columna [columnaId]="columna.id" [nombre]="columna.nombre" [posicion]="columna.posicion">
-        </app-columna>
+        <button mat-icon-button id="add-btn" class="btn-cuadrado" (click)="openDialog()">
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
-    </div>
-
-    <app-nueva-columna></app-nueva-columna>
-
   </div>
 
 </div>

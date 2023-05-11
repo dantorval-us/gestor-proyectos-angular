@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between">
 
-  <h2 *ngIf="!modoEdicion" id="nombre2">
+  <h2 *ngIf="!modoEdicion">
     <i class="bi bi-kanban">&nbsp;&nbsp;</i> {{ nombre }}
   </h2>
 
@@ -12,12 +12,12 @@
     </button>
   </mat-form-field>
 
-  <button 
+  <button class="btn-cuadrado"
     mat-icon-button 
     [matMenuTriggerFor]="menu" 
     #menuTrigger="matMenuTrigger"
     (click)="stopPropagation($event)">
-    <mat-icon>menu</mat-icon>
+    <mat-icon>more_horiz</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="cambiaModoEdicion($event)" (click)="closeMenu(menuTrigger)" (click)="enfocarNombre()">

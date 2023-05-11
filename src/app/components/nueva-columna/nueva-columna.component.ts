@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ColumnaInterface } from 'src/app/interfaces/columna.interface';
 import { ColumnaService } from 'src/app/services/columna.service';
 
@@ -14,11 +15,18 @@ export class NuevaColumnaComponent implements OnInit {
   formulario: FormGroup;
   columnas: ColumnaInterface[] = [];
   posicion: number = 0;
-  idProyecto = String(this.route.snapshot.paramMap.get('id'));
+  //idProyecto = String(this.route.snapshot.paramMap.get('id'));
+
+  ventanaEmergente:boolean = false;
+  nombreFormControl = new FormControl('', [Validators.required]);
+  idProyecto = this.data.idProyecto;
 
   constructor(
     private columnaService:ColumnaService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<NuevaColumnaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.formulario = new FormGroup({
       nombre: new FormControl(),
@@ -26,6 +34,7 @@ export class NuevaColumnaComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    
   }
 
   async addColumna() {
@@ -51,5 +60,11 @@ export class NuevaColumnaComponent implements OnInit {
       });
     }
   }  
+  
+  onCrear(): void {
+    if(this.formulario.value.nombre != null) {
+      this.dialogRef.close();
+    }
+  }
 
 }

@@ -1,21 +1,36 @@
-  <div class="columna-container">
-    <div class="cabecera-container">
-      <h2 *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion()">
+<div class="columna-container">
+  <div class="cuerpo">
+    <div class="d-flex justify-content-between cabecera">
+      <h2 *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion(); enfocarNombre()">
         {{ nombre }}
       </h2>
-
-      <h2 *ngIf="modoEdicion" (keydown.enter)="updateColumna(columnaId!)">
-        <input [(ngModel)]="nombre"/>
-        <button (click)="updateColumna(columnaId!)">
-          <i class="bi bi-check"></i>
+      
+      <mat-form-field *ngIf="modoEdicion" (keydown.enter)="updateColumna(columnaId!)">
+        <input matInput id="nombre" [(ngModel)]="nombre" (blur)="cambiaModoEdicion()"/>
+        <button matSuffix mat-icon-button (click)="updateColumna(columnaId!)">
+          <mat-icon>check</mat-icon>
         </button>
-      </h2>
+      </mat-form-field>
 
-      <button class="btn" (click)="deleteColumna(columnaId!)">
-        <i class="bi bi-x"></i>
+      <button *ngIf="!modoEdicion" class="btn-cuadrado"
+        mat-icon-button 
+        [matMenuTriggerFor]="menu" 
+        #menuTrigger="matMenuTrigger">
+        <mat-icon>more_vert</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="cambiaModoEdicion()" (click)="enfocarNombre()">
+          <mat-icon>edit</mat-icon>
+          <span>Renombrar</span>
+        </button>
+        <button class="eliminar" mat-menu-item (click)="deleteColumna(columnaId!)">
+          <mat-icon>delete</mat-icon>
+          <span>Eliminar</span>
+        </button>
+      </mat-menu>
+
     </div>
-  
+    
     <div cdkDropList
       [cdkDropListData]="tareasColumna"
       class="tareas-container"
@@ -26,10 +41,10 @@
           </app-tarea>
       </div>
     </div>
+  </div>
+    
+  <div class="pie">
+    <app-nueva-tarea [columna]="columnaId"></app-nueva-tarea>
+  </div>
 
-    <form [formGroup]="formulario" (ngSubmit)="addTarea()">
-      <input type="text" formControlName="nombreTarea" placeholder="Nueva tarea" #nombreTarea>
-      <input type="submit" value="Añadir" class="btn btn-info" (click)="nombreTarea.value=''">
-    </form>
-  
   </div>

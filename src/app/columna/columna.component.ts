@@ -1,6 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { ColumnaService } from '../services/columna.service';
 import { TareaService } from '../services/tarea.service';
 import { TareaInterface } from '../interfaces/tarea.interface';
@@ -22,18 +21,12 @@ export class ColumnaComponent implements OnInit {
   modoEdicion = false;
   idProyecto = String(this.route.snapshot.paramMap.get('id'));
 
-  formulario: FormGroup;
-
   constructor(
     private columnaService:ColumnaService,
     private tareaService:TareaService,
     private route: ActivatedRoute
   ) {
-      this.formulario = new FormGroup({
-        nombreTarea: new FormControl(),
-        columna: new FormControl(this.columnaId!),
-      })
-    };
+  };
 
   ngOnInit(): void {
     this.columnaId?.length && this.getTareasColumna();
@@ -45,7 +38,7 @@ export class ColumnaComponent implements OnInit {
   }
 
   cambiaModoEdicion():void {
-    this.modoEdicion = true;
+    this.modoEdicion = !this.modoEdicion;
   }
 
   deleteColumna(id: string):void {
@@ -56,7 +49,13 @@ export class ColumnaComponent implements OnInit {
   updateIndices(idProyecto:string):void {
     this.columnaService.updateIndicesService(this.posicion!, idProyecto);
   }
-
+  
+  enfocarNombre(): void {
+    setTimeout(() => {
+      document.getElementById("nombre")?.focus()
+    }, 0);
+  }
+  
   /* Tareas: */
   drop(event: CdkDragDrop<TareaInterface[]>):void {
     const columnaId = this.columnaId!;
@@ -74,22 +73,6 @@ export class ColumnaComponent implements OnInit {
       this.tareaService.dropTransaction(event.item.data.tareaId, columnaId, event.container.data, event.previousContainer.data, event.currentIndex);
     }
   }
-
-  async addTarea() {
-    if (!this.formulario.value.nombreTarea) { return; }
-    this.formulario.get('columna')?.setValue(this.columnaId);
-    this.formulario.value.posicion = await this.addPosicionTarea();
-    this.tareaService.addTarea(this.formulario.value);
-  }
-
-  async addPosicionTarea() {
-    let pos = await this.tareaService.getNumTareasColumna(this.columnaId!);
-    if(pos == 0) {
-      return 1;
-    } else {
-      return pos + 1;
-    };
-  };
 
   getTareasColumna():void {
     this.tareaService.getTareasColumna(this.columnaId!).subscribe(tareas => {

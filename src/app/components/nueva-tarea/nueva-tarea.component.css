@@ -1,0 +1,6 @@
+#crear-tarea-btn[mat-icon-button] {
+  width: 100%;
+  padding-left: 0.7rem;
+  border-radius: 7px;
+  text-align: left;
+}
