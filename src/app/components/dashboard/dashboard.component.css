@@ -7,7 +7,7 @@ a {
   display: block;
   color: var(--primary-color);
   text-align: center;
-  width: 40vw !important;
+  width: 50vw !important;
   min-width: 70px;
   margin: .5rem auto;
   box-sizing: border-box;
@@ -84,6 +84,9 @@ i, h1 {
 @media screen and (min-width: 1024px) {
   .mat-raised-button {
     max-width: 25vw;
+  }
+  a {
+    width: 47vw !important;
   }
 }
 
