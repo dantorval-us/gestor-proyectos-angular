@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ColumnaInterface } from '../interfaces/columna.interface';
-import { ColumnaService } from '../services/columna.service';
+import { ColumnaInterface } from '../../interfaces/columna.interface';
+import { ColumnaService } from '../../services/columna.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute } from '@angular/router';
-import { ProyectoService } from '../services/proyecto.service';
+import { ProyectoService } from '../../services/proyecto.service';
 import { MatDialog } from '@angular/material/dialog';
-import { NuevaColumnaComponent } from '../components/nueva-columna/nueva-columna.component';
+import { NuevaColumnaComponent } from '../nueva-columna/nueva-columna.component';
 
 @Component({
   selector: 'app-tablero',

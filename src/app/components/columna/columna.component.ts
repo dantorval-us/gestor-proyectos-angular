@@ -1,8 +1,8 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
-import { ColumnaService } from '../services/columna.service';
-import { TareaService } from '../services/tarea.service';
-import { TareaInterface } from '../interfaces/tarea.interface';
+import { ColumnaService } from '../../services/columna.service';
+import { TareaService } from '../../services/tarea.service';
+import { TareaInterface } from '../../interfaces/tarea.interface';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

@@ -25,7 +25,6 @@ export class LoginComponent {
   onClick() {
     this.authService.loginWithGoogle()
       .then(response => {
-        console.log(response);
         this.router.navigate(['/']);
       })
       .catch(error => console.log(error))
