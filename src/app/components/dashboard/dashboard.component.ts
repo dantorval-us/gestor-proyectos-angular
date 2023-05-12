@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
   proyectos: ProyectoInterface[] = [];
   auth = getAuth().currentUser?.uid;
+  cargandoProyectos = true;
 
   constructor(
     private proyectoService:ProyectoService,
@@ -27,6 +28,7 @@ export class DashboardComponent implements OnInit {
   getProyectos() {
     this.proyectoService.getProyectos(this.auth!).subscribe(proyectos => {
       this.proyectos = proyectos;
+      this.cargandoProyectos = false;
     });
   }
 

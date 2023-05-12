@@ -2,7 +2,7 @@
   <div class="cuerpo">
     <div class="d-flex justify-content-between cabecera">
       <h2 *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion(); enfocarNombre()">
-        {{ nombre }} ({{posicion}})
+        {{ nombre }}
       </h2>
       
       <mat-form-field *ngIf="modoEdicion" (keydown.enter)="updateColumna(columnaId!)">

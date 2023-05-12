@@ -1,23 +1,23 @@
-<div class="d-flex justify-content-center dashboard-container">
-  <div class="proy-list">
-    <a *ngFor="let proyecto of proyectos"
-      routerLink="/proyecto/{{proyecto.id}}">
-      <app-proyecto [proyectoId]="proyecto.id" [nombre]="proyecto.nombre"></app-proyecto>
-    </a>
+<div *ngIf="!cargandoProyectos">
+  <div class="d-flex justify-content-center dashboard-container">
+    <div class="proy-list">
+      <a *ngFor="let proyecto of proyectos"
+        routerLink="/proyecto/{{proyecto.id}}">
+        <app-proyecto [proyectoId]="proyecto.id" [nombre]="proyecto.nombre"></app-proyecto>
+      </a>
+    </div>
+    
+    <div *ngIf="proyectos.length !== 0" class="nuevo-tablero">
+      <app-nuevo-proyecto [numProyectos]="proyectos.length"></app-nuevo-proyecto>
+    </div>
   </div>
-  
-  <div *ngIf="proyectos.length !== 0" class="nuevo-tablero">
-    <app-nuevo-proyecto [numProyectos]="proyectos.length"></app-nuevo-proyecto>
+
+  <!-- Tablero vacio -->
+  <div *ngIf="proyectos.length === 0" class="tablero-vacio">
+    <button mat-raised-button (click)="openDialog()">
+      <i class="bi bi-kanban"></i>
+      <h1>Crear tablero</h1>
+      <h3>Cree un tablero para empezar a gestionar su proyecto</h3>
+    </button>
   </div>
-</div>
-
-<!-- Tablero vacio -->
-<div *ngIf="proyectos.length === 0" class="tablero-vacio">
-
-  <button mat-raised-button (click)="openDialog()">
-    <i class="bi bi-kanban"></i>
-    <h1>Crear tablero</h1>
-    <h3>Cree un tablero para empezar a gestionar su proyecto</h3>
-  </button>
-
 </div>

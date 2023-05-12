@@ -18,6 +18,7 @@ export class TableroComponent implements OnInit {
   columnas: ColumnaInterface[];
   idProyecto = String(this.route.snapshot.paramMap.get('id'));
   nombreProyecto: string = "";
+  cargandoProyecto = true;
 
   constructor(
     private columnaService: ColumnaService,
@@ -33,12 +34,13 @@ export class TableroComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.getColumnas();
     this.getProyecto();
+    this.getColumnas();
   }
 
   async getProyecto() {
     this.nombreProyecto = await this.proyectoService.getProyecto(this.idProyecto);
+    this.cargandoProyecto = false;
   }
 
   getColumnas() {
