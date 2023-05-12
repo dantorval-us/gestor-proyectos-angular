@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { collection, Firestore, addDoc, collectionData, doc, deleteDoc, query, where, getCountFromServer, orderBy, limit, updateDoc, 
-          getDocs } from '@angular/fire/firestore';
+          getDocs, runTransaction} from '@angular/fire/firestore';
 import { ColumnaInterface } from '../interfaces/columna.interface';
 import { Observable } from 'rxjs';
 
@@ -22,18 +22,7 @@ export class ColumnaService {
     return collectionData(q, {idField: 'id'}) as Observable<ColumnaInterface[]>;
   }
 
-  // async getColumna(id: string) {
-  //   const columnaRef = doc(this.firestore, 'columnas', id);
-  //   const columnaSnap = await getDoc(columnaRef);
-  //   if (columnaSnap.exists()) {
-  //     console.log("Columna:", columnaSnap.data());
-  //   } else {
-  //     console.log("No lo encuentra la columna");
-  //   }
-  // }
-
   async getColumnasIntermedias(pos: number, avanza: boolean) {
-    
     const columnaRef = collection(this.firestore, 'columnas');
     const q = query(columnaRef, where("posicion", "==", pos))
     const querySnapshot = await getDocs(q);
@@ -46,7 +35,6 @@ export class ColumnaService {
         await updateDoc(docRef, { posicion: pos+1 }); 
       }
     })
-
   }
 
   updateColumna(id: string, nuevoNombre: string) {
@@ -54,11 +42,36 @@ export class ColumnaService {
     return updateDoc(columnaRef, {nombre: nuevoNombre})
   }
 
-  updatePosicion(id:string, nuevaPosicion:number) {
-    const columnaRef = doc(this.firestore, `columnas/${id}`);
-    return updateDoc(columnaRef, {posicion: nuevaPosicion});
+  updatePosicionColumnaTransaction(id:string, posicionPrevia:number, posicionNueva:number) {
+    runTransaction(this.firestore, async (transaction) => {
+      posicionPrevia = posicionPrevia + 1;
+      posicionNueva = posicionNueva + 1;
+      const columnaRef = collection(this.firestore, 'columnas');
+      
+      // Actualiza columnas intermedias afectadas
+      if(posicionPrevia < posicionNueva) { 
+        for(let i=posicionPrevia+1; i<=posicionNueva; i++ ) {
+          const q = query(columnaRef, where("posicion", "==", i))
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach(async (doc) => {
+            transaction.update(doc.ref, { posicion: i-1 });
+          })
+        }
+      } else {
+        for(let i=posicionPrevia-1; i>=posicionNueva; i-- ) {
+          const q = query(columnaRef, where("posicion", "==", i))
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach(async (doc) => {
+            transaction.update(doc.ref, { posicion: i+1 });
+          })
+        }
+      }
+
+      // Actualiza columna seleccionada
+      transaction.update(doc(this.firestore, `columnas/${id}`), {posicion: posicionNueva});
+    });
   }
-  
+
   async updateIndicesService(pos: number, idProyecto:string) {
     const columnaRef = collection(this.firestore, 'columnas');
     const q = query(columnaRef, where("proyecto", "==", idProyecto), where("posicion", ">", pos))

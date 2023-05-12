@@ -53,24 +53,7 @@ export class TableroComponent implements OnInit {
     const posNueva = event.currentIndex;
     const columnaId = event.item.data.columnaId;
     moveItemInArray(this.columnas, posPrevia, posNueva);
-    this.updatePosicionColumna(columnaId, posPrevia, posNueva);
-  }
-
-  async updatePosicionColumna(id: string, posPrevia:number, posNueva:number) {
-    const posPrevMasUno = posPrevia + 1;
-    const posNueMasUno = posNueva + 1;
-  
-    if(posPrevia < posNueva) {
-      for(let i=posPrevMasUno+1; i<=posNueMasUno; i++ ) {
-        await this.columnaService.getColumnasIntermedias(i, true);
-      }
-    } else {
-      for(let i=posPrevMasUno-1; i>=posNueMasUno; i-- ) {
-        await this.columnaService.getColumnasIntermedias(i, false);
-      }
-    }
-
-    this.columnaService.updatePosicion(id, posNueMasUno);
+    this.columnaService.updatePosicionColumnaTransaction(columnaId, posPrevia, posNueva);
   }
 
   openDialog(): void {
