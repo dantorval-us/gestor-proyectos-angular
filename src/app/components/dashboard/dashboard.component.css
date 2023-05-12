@@ -51,9 +51,8 @@ i, h1 {
 }
 
 .nuevo-tablero {
-  display: flex;
-  justify-content: center;
   margin: 50px 2vw 0 2vw;
+  margin-left: auto;
 }
 
 .tablero-vacio {
