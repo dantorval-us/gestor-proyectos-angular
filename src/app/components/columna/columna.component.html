@@ -37,8 +37,8 @@
       (cdkDropListDropped)="drop($event)">
       <div *ngFor="let tarea of tareasColumna" cdkDrag [cdkDragData]="{ tareaId: tarea.id, 
           columnaId: tarea.columna, posicion: tarea.posicion}">
-          <app-tarea [tareaId]="tarea.id" [nombre]="tarea.nombreTarea" [posicion]="tarea.posicion" [idColumna]="tarea.columna">
-          </app-tarea>
+            <app-tarea [tareaId]="tarea.id" [nombre]="tarea.nombreTarea" [posicion]="tarea.posicion" [idColumna]="tarea.columna">
+            </app-tarea>
       </div>
     </div>
   </div>

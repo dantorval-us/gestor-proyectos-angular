@@ -1,14 +1,18 @@
-<button *ngIf="!modoCrear" id="crear-tarea-btn" mat-icon-button (click)="cambiaCrearTarea()" (click)="enfocarCrearTarea()">
-  <mat-icon>add</mat-icon>
-  <span>Añadir tarea</span>
-</button>
+<div class="crear-tarea-container">
+  <button *ngIf="!modoCrear" class="crear-tarea" mat-icon-button (click)="cambiaCrearTarea()" (click)="enfocarCrearTarea()">
+    <mat-icon>add</mat-icon>
+    <span>Añadir tarea</span>
+  </button>
 
-<form *ngIf="modoCrear" [formGroup]="formulario" (ngSubmit)="addTarea()" (keyboard.enter)="addTarea()">
-  <mat-form-field>
-    <mat-label>Nombre de la tarea</mat-label>
-    <input matInput (blur)="cambiaCrearTarea()" id="nombreTarea" formControlName="nombreTarea" #nombreTarea>
-    <button type="submit" matSuffix mat-icon-button (click)="cambiaCrearTarea()">
-      <mat-icon>check</mat-icon>
-    </button>
-  </mat-form-field>
-</form>
+
+
+  <form *ngIf="modoCrear" class="crear-tarea" [formGroup]="formulario" (ngSubmit)="addTarea()" (keyboard.enter)="addTarea()">
+    <mat-form-field>
+      <mat-label>Nombre de la tarea</mat-label>
+      <input matInput (blur)="cambiaCrearTarea()" id="nombreTarea" formControlName="nombreTarea" #nombreTarea>
+      <button type="submit" matSuffix mat-icon-button (click)="cambiaCrearTarea()">
+        <mat-icon>check</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</div>
