@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, 
     ...canActivate(() => redirectLoggedInTo(['/'])) },
   { path: 'proyecto/:id', component: TableroComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['/login'])) }
+    ...canActivate(() => redirectUnauthorizedTo(['/login'])) },
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
