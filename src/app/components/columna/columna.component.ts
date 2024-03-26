@@ -39,6 +39,7 @@ export class ColumnaComponent implements OnInit {
 
   cambiaModoEdicion():void {
     this.modoEdicion = !this.modoEdicion;
+    this.enfocarNombre();
   }
 
   deleteColumna(id: string):void {

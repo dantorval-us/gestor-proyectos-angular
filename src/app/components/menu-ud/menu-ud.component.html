@@ -1,0 +1,30 @@
+<button class="btn-cuadrado"
+  mat-icon-button 
+  [matMenuTriggerFor]="menu" 
+  #menuTrigger="matMenuTrigger"
+  (click)="stopPropagation($event)"
+  (menuClosed)="menuClosed()"
+>
+  <span *ngIf="orientacion==='vertical'">
+    <mat-icon>more_vert</mat-icon>
+  </span>
+  <span *ngIf="orientacion==='horizontal'">
+    <mat-icon>more_horiz</mat-icon>
+  </span>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item
+    (click)="editar($event)"
+    (click)="closeMenu(menuTrigger)"
+  >
+    <mat-icon>edit</mat-icon>
+    <span>Renombrar</span>
+  </button>
+  <button class="eliminar" mat-menu-item 
+    (click)="eliminar($event)"
+  >
+    <mat-icon>delete</mat-icon>
+    <span>Eliminar</span>
+  </button>
+</mat-menu>

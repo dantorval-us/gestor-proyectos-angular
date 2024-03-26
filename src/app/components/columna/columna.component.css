@@ -20,12 +20,6 @@ h2 {
   flex-direction: column;
 }
 
-.btn-cerrar{
-  position: absolute;
-  right: 0;
-  margin: 0.5em 0.5em;
-}
-
 .tareas-container {
   min-height: 100%;
   flex-grow: 1;

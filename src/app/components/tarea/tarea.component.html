@@ -10,21 +10,13 @@
     </button>
   </mat-form-field>
 
-  <button *ngIf="!modoEdicion && muestraBtnMas" class="btn-cuadrado" (click)="despliega()" (menuClosed)="ocultaBtnMas()"
-    mat-icon-button 
-    [matMenuTriggerFor]="menu"
-    #menuTrigger="matMenuTrigger">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="cambiaModoEdicion(); enfocarNombre()" >
-      <mat-icon>edit</mat-icon>
-      <span>Renombrar</span>
-    </button>
-    <button class="eliminar" mat-menu-item (click)="deleteTarea()">
-      <mat-icon>delete</mat-icon>
-      <span>Eliminar</span>
-    </button>
-  </mat-menu>
+  <app-menu-ud *ngIf="!modoEdicion && muestraBtnMas" (click)="despliega()" 
+    [orientacion]="'vertical'"
+    [propagation]="true"
+    (editarEvent)="cambiaModoEdicion()"
+    (eliminarEvent)="deleteTarea()"
+    (cierraMenu)="ocultaBtnMas()"
+  >
+  </app-menu-ud>
 </div>
 

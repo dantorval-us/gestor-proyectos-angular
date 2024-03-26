@@ -33,6 +33,7 @@ export class TareaComponent implements OnInit {
   
   cambiaModoEdicion(): void {
     this.modoEdicion = !this.modoEdicion;
+    this.enfocarNombre();
   }
 
   enfocarNombre(): void {

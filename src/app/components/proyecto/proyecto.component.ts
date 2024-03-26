@@ -1,5 +1,4 @@
-import { Component, ElementRef, Input } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { Component, Input } from '@angular/core';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 
 @Component({
@@ -29,25 +28,15 @@ export class ProyectoComponent {
     this.modoEdicion = true;
   }
 
-  deleteProyecto(event: Event, id: string): void {
+  eliminar(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
-    this.proyectoService.deleteProyecto(id);
+    this.proyectoService.deleteProyecto(this.proyectoId!);
   }
 
   stopPropagation(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
-  }
-
-  closeMenu(menuTrigger: MatMenuTrigger) {
-    menuTrigger.closeMenu();
-  }
-
-  enfocarNombre(): void {
-    setTimeout(() => {
-      document.getElementById("nombre")?.focus()
-    }, 0);
   }
 
 }

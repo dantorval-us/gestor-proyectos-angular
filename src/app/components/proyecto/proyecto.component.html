@@ -12,22 +12,11 @@
     </button>
   </mat-form-field>
 
-  <button class="btn-cuadrado"
-    mat-icon-button 
-    [matMenuTriggerFor]="menu" 
-    #menuTrigger="matMenuTrigger"
-    (click)="stopPropagation($event)">
-    <mat-icon>more_horiz</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="cambiaModoEdicion($event)" (click)="closeMenu(menuTrigger)" (click)="enfocarNombre()">
-      <mat-icon>edit</mat-icon>
-      <span>Renombrar</span>
-    </button>
-    <button class="eliminar" mat-menu-item (click)="deleteProyecto($event, proyectoId!)">
-      <mat-icon>delete</mat-icon>
-      <span>Eliminar</span>
-    </button>
-  </mat-menu>
+  <app-menu-ud 
+    [orientacion]="'horizontal'"
+    (editarEvent)="cambiaModoEdicion($event)"
+    (eliminarEvent)="eliminar($event)"
+  >
+  </app-menu-ud>
 
 </div>
