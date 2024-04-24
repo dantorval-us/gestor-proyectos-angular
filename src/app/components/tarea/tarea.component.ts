@@ -12,6 +12,7 @@ export class TareaComponent implements OnInit {
   @Input() nombre: string = "";
   @Input() posicion: number = 0;
   @Input() idColumna: string = "";
+  nombreEdit: string = '';
 
   constructor(private tareaService:TareaService ) {};
 
@@ -20,6 +21,7 @@ export class TareaComponent implements OnInit {
   desplegado:boolean = false;
 
   ngOnInit(): void {
+    this.nombreEdit = this.nombre;
   }
 
   updateTarea() {
@@ -33,6 +35,8 @@ export class TareaComponent implements OnInit {
   
   cambiaModoEdicion(): void {
     this.modoEdicion = !this.modoEdicion;
+    this.enfocarNombre();
+    this.nombre = this.nombreEdit;
   }
 
   enfocarNombre(): void {

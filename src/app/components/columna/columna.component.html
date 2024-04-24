@@ -4,30 +4,19 @@
       <h2 *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion(); enfocarNombre()">
         {{ nombre }}
       </h2>
-      
       <mat-form-field *ngIf="modoEdicion" (keydown.enter)="updateColumna(columnaId!)">
         <input matInput id="nombre" [(ngModel)]="nombre" (blur)="cambiaModoEdicion()"/>
-        <button matSuffix mat-icon-button (click)="updateColumna(columnaId!)">
+        <button matSuffix mat-icon-button (mousedown)="updateColumna(columnaId!)">
           <mat-icon>check</mat-icon>
         </button>
       </mat-form-field>
 
-      <button *ngIf="!modoEdicion" class="btn-cuadrado"
-        mat-icon-button 
-        [matMenuTriggerFor]="menu" 
-        #menuTrigger="matMenuTrigger">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="cambiaModoEdicion()" (click)="enfocarNombre()">
-          <mat-icon>edit</mat-icon>
-          <span>Renombrar</span>
-        </button>
-        <button class="eliminar" mat-menu-item (click)="deleteColumna(columnaId!)">
-          <mat-icon>delete</mat-icon>
-          <span>Eliminar</span>
-        </button>
-      </mat-menu>
+      <app-menu-ud 
+        [orientacion]="'vertical'"
+        (editarEvent)="cambiaModoEdicion()"
+        (eliminarEvent)="deleteColumna(columnaId!)"
+      >
+      </app-menu-ud>
 
     </div>
     

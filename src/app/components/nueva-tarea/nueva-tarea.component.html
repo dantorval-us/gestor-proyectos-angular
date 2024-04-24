@@ -6,11 +6,11 @@
 
 
 
-  <form *ngIf="modoCrear" class="crear-tarea" [formGroup]="formulario" (ngSubmit)="addTarea()" (keyboard.enter)="addTarea()">
+  <form *ngIf="modoCrear" class="crear-tarea" [formGroup]="formulario" (ngSubmit)="submitForm()">
     <mat-form-field>
       <mat-label>Nombre de la tarea</mat-label>
       <input matInput (blur)="cambiaCrearTarea()" id="nombreTarea" formControlName="nombreTarea" #nombreTarea>
-      <button type="submit" matSuffix mat-icon-button (click)="cambiaCrearTarea()">
+      <button type="submit" matSuffix mat-icon-button (click)="cambiaCrearTarea()" (mousedown)="submitForm()">
         <mat-icon>check</mat-icon>
       </button>
     </mat-form-field>

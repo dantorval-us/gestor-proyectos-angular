@@ -1,3 +1,3 @@
-(<feat|fix|test>) <titulo>
+(<feat|fix|test|style>) <titulo>
 
 <descripcion>

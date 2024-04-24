@@ -28,6 +28,7 @@ import { LoginComponent } from './components/login/login.component';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { ProyectoService } from './services/proyecto.service';
 import { NuevaTareaComponent } from './components/nueva-tarea/nueva-tarea.component';
+import { MenuUDComponent } from './components/menu-ud/menu-ud.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NuevaTareaComponent } from './components/nueva-tarea/nueva-tarea.compon
     NuevoProyectoComponent,
     LoginComponent,
     NuevaTareaComponent,
+    MenuUDComponent,
   ],
   imports: [
     BrowserModule,
