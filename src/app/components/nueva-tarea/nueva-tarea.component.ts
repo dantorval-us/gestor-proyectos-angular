@@ -54,4 +54,8 @@ export class NuevaTareaComponent implements OnInit{
     }, 0);
   }
 
+  submitForm() {
+    this.addTarea();
+  }
+
 }

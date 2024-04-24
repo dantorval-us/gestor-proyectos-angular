@@ -6,7 +6,7 @@
       </h2>
       <mat-form-field *ngIf="modoEdicion" (keydown.enter)="updateColumna(columnaId!)">
         <input matInput id="nombre" [(ngModel)]="nombre" (blur)="cambiaModoEdicion()"/>
-        <button matSuffix mat-icon-button (click)="updateColumna(columnaId!)">
+        <button matSuffix mat-icon-button (mousedown)="updateColumna(columnaId!)">
           <mat-icon>check</mat-icon>
         </button>
       </mat-form-field>

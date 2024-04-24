@@ -55,7 +55,7 @@ export class TableroComponent implements OnInit {
     const posNueva = event.currentIndex;
     const columnaId = event.item.data.columnaId;
     moveItemInArray(this.columnas, posPrevia, posNueva);
-    this.columnaService.updatePosicionColumnaTransaction(columnaId, posPrevia, posNueva);
+    this.columnaService.updatePosicionColumnaTransaction(columnaId, posPrevia, posNueva, this.idProyecto);
   }
 
   openDialog(): void {

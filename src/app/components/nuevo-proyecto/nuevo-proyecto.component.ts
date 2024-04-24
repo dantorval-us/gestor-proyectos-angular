@@ -57,4 +57,9 @@ export class NuevoProyectoComponent implements OnInit {
     }
   }
 
+  submitForm() {
+    this.addProyecto();
+    this.formulario.reset();
+  }
+
 }

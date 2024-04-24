@@ -39,4 +39,8 @@ export class ProyectoComponent {
     event.stopPropagation();
   }
 
+  onBlur() {
+    this.modoEdicion = false;
+  }
+
 }

@@ -16,6 +16,7 @@ export class ColumnaComponent implements OnInit {
   @Input() columnaId: string|undefined;
   @Input() nombre: string = "";
   @Input() posicion: number|undefined;
+  nombreEdit: string = '';
   tareas: TareaInterface[] = [];
   tareasColumna: TareaInterface[] = []
   modoEdicion = false;
@@ -30,6 +31,7 @@ export class ColumnaComponent implements OnInit {
 
   ngOnInit(): void {
     this.columnaId?.length && this.getTareasColumna();
+    this.nombreEdit = this.nombre;
   };
 
   updateColumna(id:string):void {
@@ -40,6 +42,7 @@ export class ColumnaComponent implements OnInit {
   cambiaModoEdicion():void {
     this.modoEdicion = !this.modoEdicion;
     this.enfocarNombre();
+    this.nombre = this.nombreEdit;
   }
 
   deleteColumna(id: string):void {

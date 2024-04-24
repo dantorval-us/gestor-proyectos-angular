@@ -5,11 +5,11 @@
     <span>Crear nuevo tablero</span>
   </button>
 
-  <form *ngIf="crearTablero" [formGroup]="formulario" (ngSubmit)="addProyecto(); formulario.reset()" (keyboard.enter)="addProyecto()">
+  <form *ngIf="crearTablero" [formGroup]="formulario" (ngSubmit)="submitForm()">
     <mat-form-field>
       <mat-label>Nombre del tablero</mat-label>
       <input matInput (blur)="cambiaCrearTablero($event)" id="nombreTablero" formControlName="nombre" #nombre>
-      <button type="submit" matSuffix mat-icon-button (click)="cambiaCrearTablero($event)">
+      <button type="submit" matSuffix mat-icon-button (click)="cambiaCrearTablero($event)" (mousedown)="submitForm()">
         <mat-icon>check</mat-icon>
       </button>
     </mat-form-field>

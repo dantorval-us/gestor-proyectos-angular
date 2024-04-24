@@ -42,7 +42,7 @@ export class ColumnaService {
     return updateDoc(columnaRef, {nombre: nuevoNombre})
   }
 
-  updatePosicionColumnaTransaction(id:string, posicionPrevia:number, posicionNueva:number) {
+  updatePosicionColumnaTransaction(id:string, posicionPrevia:number, posicionNueva:number, idProyecto: string) {
     runTransaction(this.firestore, async (transaction) => {
       posicionPrevia = posicionPrevia + 1;
       posicionNueva = posicionNueva + 1;
@@ -51,7 +51,7 @@ export class ColumnaService {
       // Actualiza columnas intermedias afectadas
       if(posicionPrevia < posicionNueva) { 
         for(let i=posicionPrevia+1; i<=posicionNueva; i++ ) {
-          const q = query(columnaRef, where("posicion", "==", i))
+          const q = query(columnaRef, where("posicion", "==", i), where('proyecto', '==', idProyecto))
           const querySnapshot = await getDocs(q);
           querySnapshot.forEach(async (doc) => {
             transaction.update(doc.ref, { posicion: i-1 });
@@ -59,7 +59,7 @@ export class ColumnaService {
         }
       } else {
         for(let i=posicionPrevia-1; i>=posicionNueva; i-- ) {
-          const q = query(columnaRef, where("posicion", "==", i))
+          const q = query(columnaRef, where("posicion", "==", i), where('proyecto', '==', idProyecto))
           const querySnapshot = await getDocs(q);
           querySnapshot.forEach(async (doc) => {
             transaction.update(doc.ref, { posicion: i+1 });
