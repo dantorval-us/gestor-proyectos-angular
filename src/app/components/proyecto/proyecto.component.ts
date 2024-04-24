@@ -10,12 +10,17 @@ export class ProyectoComponent {
 
   @Input() proyectoId: string|undefined;
   @Input() nombre: string = "";
+  nombreEdit: string = '';
 
   modoEdicion = false;
 
   constructor(
     private proyectoService: ProyectoService,
   ) {};
+
+  ngOnInit(): void {
+    this.nombreEdit = this.nombre;
+  }
 
   updateProyecto() {
     this.proyectoService.updateProyecto(this.proyectoId!, this.nombre);
@@ -41,6 +46,7 @@ export class ProyectoComponent {
 
   onBlur() {
     this.modoEdicion = false;
+    this.nombre = this.nombreEdit;
   }
 
 }
