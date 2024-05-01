@@ -1,0 +1,31 @@
+<form [formGroup]="formulario" (ngSubmit)="updateProyecto()">
+
+  <div *ngIf="!editNombre" mat-dialog-title class="nombre-proy-dialog" (click)="cambiarEditNombre(); enfocarNombre()">
+    {{nombre}}
+    <mat-icon matSuffix class="edit-icon-edit-proy">edit</mat-icon>
+  </div>
+
+  <div *ngIf="editNombre">
+    <mat-form-field appearance="outline">
+      <input matInput id="nombre" formControlName="nombre">
+      <button mat-icon-button matSuffix class="btn-cuadrado" (click)="handleCheckNombre()">
+        <mat-icon>check</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <textarea 
+      matInput 
+      formControlName="descripcion"
+      class="text-area-desc"
+      rows="3" 
+      placeholder="Descripción">
+    </textarea>
+  </mat-form-field>
+
+  <div mat-dialog-actions class="d-flex justify-content-between">
+    <button type="button" mat-button class="text-danger" (click)="dialogRef.close()">Cancelar</button>
+    <button type="submit" mat-button (click)="dialogRef.close()">Guardar</button>
+  </div>
+</form>

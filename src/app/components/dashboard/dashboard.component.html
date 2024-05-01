@@ -3,7 +3,7 @@
     <div class="proy-list">
       <a *ngFor="let proyecto of proyectos"
         routerLink="/proyecto/{{proyecto.id}}">
-        <app-proyecto [proyectoId]="proyecto.id" [nombre]="proyecto.nombre"></app-proyecto>
+        <app-proyecto [proyectoId]="proyecto.id" [nombre]="proyecto.nombre" [descripcion]="proyecto.descripcion"></app-proyecto>
       </a>
     </div>
     

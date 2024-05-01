@@ -1,3 +1,11 @@
 .eliminar, .eliminar .mat-icon {
   color: var(--danger-color);
 }
+
+.mat-menu-item .mat-icon {
+  margin-right: 0.5rem;
+}
+
+.mat-menu-item span {
+  font-size: medium;
+}

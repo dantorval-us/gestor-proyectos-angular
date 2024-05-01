@@ -27,13 +27,16 @@ export class ProyectoService {
     if (proyectoSnap.exists()) {
       return proyectoSnap.data()['nombre'];
     } else {
-      console.info("No lo encuentra el proyecto");
+      console.info("No encuentra el proyecto");
     }
   }
 
-  updateProyecto(id: string, nuevoNombre: string) {
+  updateProyecto(id: string, nombre: string, descripcion: string) {
     const proyectoRef = doc(this.firestore, `proyectos/${id}`);
-    return updateDoc(proyectoRef, {nombre: nuevoNombre})
+    return updateDoc(proyectoRef, 
+      {nombre: nombre,
+        descripcion: descripcion
+      })
   }
 
   deleteProyecto(id: string) {

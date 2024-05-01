@@ -1,3 +1,35 @@
+h2 {
+  margin-bottom: 0;
+}
+
 i {
   color: var(--secondary-color);
+}
+
+span {
+  padding: 0.5rem 0.1rem 0 0.2rem;
+}
+
+.p-proyecto {
+  margin: 0;
+  color: rgb(150, 150, 150);
+  font-size: medium;
+  white-space: pre-line; /* Conserva los saltos de línea */
+  overflow-wrap: break-word; /* Divide las palabras largas */
+  hyphens: auto; /* Utiliza guiones para dividir las palabras */
+  display: -webkit-box; /* Permite establecer un número específico de líneas */
+  -webkit-line-clamp: 3; /* Limita el número de líneas a 3 */
+  -webkit-box-orient: vertical; /* Establece la dirección de las cajas secundarias */
+  text-overflow: ellipsis; /* Agrega puntos suspensivos al final del texto cortado */
+  overflow: hidden; /* Oculta cualquier texto que desborde del contenedor */
+}
+
+.atrib-proy {
+  text-align: left;
+  max-width: 75%;
+}
+
+::ng-deep .editar-proyecto-dialog {
+  max-width: 444px !important;
+  width: calc(100% - 64px);
 }

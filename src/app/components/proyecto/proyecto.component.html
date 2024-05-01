@@ -1,22 +1,20 @@
-<div class="d-flex justify-content-between">
+<div class="d-flex align-self-start">
+  <span>
+    <i class="bi bi-kanban">&nbsp;&nbsp;</i> 
+  </span>
 
-  <h2 *ngIf="!modoEdicion">
-    <i class="bi bi-kanban">&nbsp;&nbsp;</i> {{ nombre }}
-  </h2>
+  <div class="d-flex flex-column justify-content-center atrib-proy">
+    <h2>{{ nombre }}</h2>
+    <p class="p-proyecto">{{ descripcion }}</p>
+  </div>
 
-  <mat-form-field *ngIf="modoEdicion" (keydown.enter)="updateProyecto()" (click)="cambiaModoEdicion($event)">
-    <i matPrefix class="bi bi-kanban">&nbsp;&nbsp;</i>
-    <input matInput type="text" id="nombre" [(ngModel)]="nombre" (blur)="onBlur()">
-    <button matSuffix mat-icon-button (click)="updateProyecto()" (click)="stopPropagation($event)">
-      <mat-icon>check</mat-icon>
-    </button>
-  </mat-form-field>
-
-  <app-menu-ud 
-    [orientacion]="'horizontal'"
-    (editarEvent)="cambiaModoEdicion($event)"
-    (eliminarEvent)="eliminar($event)"
-  >
-  </app-menu-ud>
+  <div class="ms-auto">
+    <app-menu-ud 
+      [orientacion]="'horizontal'"
+      (editarEvent)="handleUpdate()"
+      (eliminarEvent)="eliminar($event)"
+    >
+    </app-menu-ud>
+  </div>
 
 </div>
