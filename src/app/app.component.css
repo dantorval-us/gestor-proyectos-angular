@@ -20,6 +20,15 @@ header a:hover {
   color: black;
 }
 
+.angular-logo, .angular-logo img {
+  width: 1em;
+  height: 1em;
+}
+
+.angular-logo img {
+  margin: 0 0px;
+}
+
 .desconectar:hover {
   color: var(--danger-color) !important;
 }
@@ -28,7 +37,7 @@ header a:hover {
   header {
     padding: 0;
   }
-  span {
+  .desconectar span {
     display: none;
   }
 }

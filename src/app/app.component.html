@@ -1,7 +1,11 @@
 <ng-container *ngIf="!isLoginPage">
   
   <header class="d-flex mb-3 align-items-center">
-    <h1 class="p-2">{{titulo}}</h1>
+    <h1 class="p-2">
+      <span>Kanban Bo</span>
+      <span class="angular-logo"><img src="assets/images/angular-logo.png"></span>
+      <span>rds</span>
+    </h1>
     <a routerLink="/" class="p-2">Panel</a>
     <a routerLink="/login" class="ms-auto p-2 desconectar" (click)="onClick()">
       <i class="bi bi-box-arrow-right">&nbsp;</i><span>Desconectar</span>
