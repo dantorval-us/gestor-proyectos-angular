@@ -14,18 +14,62 @@
     </mat-form-field>
   </div>
 
-  <mat-form-field appearance="outline">
-    <textarea 
-      matInput 
-      formControlName="descripcion"
-      class="text-area-desc"
-      rows="3" 
-      placeholder="Añada una descripción más detallada...">
-    </textarea>
-  </mat-form-field>
+  <div class="dc-tarea justify-content-between">
+    <div class="dc-tarea-ppal">
+      <span>Descripción:</span>
+      <mat-form-field appearance="outline">
+        <textarea 
+          matInput 
+          formControlName="descripcion"
+          class="text-area-desc"
+          rows="3" 
+          placeholder="Añada una descripción más detallada...">
+        </textarea>
+      </mat-form-field>
+    
+      <div class="d-flex">
+        <span>Estimación:</span>
+        <div *ngIf="estimacion">{{ estimacion }}</div>
+        <div *ngIf="!estimacion">No definida.</div>
+      </div>
+
+      <div class="d-flex">
+        <span>Icono:</span>
+        <div *ngIf="icono">{{ icono }}</div>
+        <div *ngIf="!icono">No definido.</div>
+      </div>
+  
+    </div>
+
+    <div class="dc-tarea-lateral">
+      <span>Añadir a la tarjeta</span>
+      <button
+        type="button"
+        mat-button [matMenuTriggerFor]="menu"
+      >
+        <mat-icon>style</mat-icon>
+        Estimación
+      </button>
+      <button
+        type="button"
+        mat-button
+      >
+        <mat-icon>insert_photo</mat-icon>
+        Icono
+      </button>
+    </div>
+
+  </div>
 
   <div mat-dialog-actions class="d-flex justify-content-between">
     <button type="button" mat-button class="text-danger" (click)="dialogRef.close()">Cancelar</button>
     <button type="submit" mat-button (click)="dialogRef.close()">Guardar</button>
   </div>
 </form>
+
+<mat-menu #menu="matMenu" >
+  <span>¿Cómo de compleja es esta tarea?</span>
+  <button mat-menu-item *ngFor="let estimacion of estimacionOpciones" (click)="handleSetEstimacion(estimacion.puntos)">
+    {{ estimacion.puntos }}
+  </button>
+</mat-menu>

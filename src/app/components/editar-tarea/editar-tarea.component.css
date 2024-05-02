@@ -1,0 +1,7 @@
+.dc-tarea {
+  display: flex;
+}
+
+.dc-tarea-ppal {
+  flex: 0 0 75%;
+}

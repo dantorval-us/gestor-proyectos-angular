@@ -31,6 +31,8 @@ import { NuevaTareaComponent } from './components/nueva-tarea/nueva-tarea.compon
 import { MenuUDComponent } from './components/menu-ud/menu-ud.component';
 import { EditarProyectoComponent } from './components/editar-proyecto/editar-proyecto.component';
 import { EditarTareaComponent } from './components/editar-tarea/editar-tarea.component';
+import { DataService } from './services/data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { EditarTareaComponent } from './components/editar-tarea/editar-tarea.com
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth())
@@ -69,6 +72,7 @@ import { EditarTareaComponent } from './components/editar-tarea/editar-tarea.com
     TareaService, 
     ColumnaService,
     ProyectoService,
+    DataService,
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: {} },
   ],

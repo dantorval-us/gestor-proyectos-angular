@@ -27,8 +27,9 @@
       <div *ngFor="let tarea of tareasColumna" cdkDrag [cdkDragData]="{ tareaId: tarea.id, 
           columnaId: tarea.columna, posicion: tarea.posicion}">
             <app-tarea [tareaId]="tarea.id" [nombre]="tarea.nombreTarea" [posicion]="tarea.posicion" 
-              [idColumna]="tarea.columna" [descripcion]="tarea.descripcion"
-            >
+              [idColumna]="tarea.columna" [descripcion]="tarea.descripcion" [estimacion]="tarea.estimacion"
+              [icono]="tarea.icono"
+            > 
             </app-tarea>
       </div>
     </div>

@@ -14,6 +14,8 @@ export class TareaComponent implements OnInit {
   @Input() idColumna: string = "";
   @Input() nombre: string = "";
   @Input() descripcion: string = "";
+  @Input() estimacion: number = 0;
+  @Input() icono: string = "";
   @Input() posicion: number = 0;
 
   constructor(
@@ -41,7 +43,9 @@ export class TareaComponent implements OnInit {
       data: {
         tareaId: this.tareaId,
         nombre: this.nombre,
-        descripcion: this.descripcion 
+        descripcion: this.descripcion,
+        estimacion: this.estimacion,
+        icono: this.icono
       },
       panelClass: []
     });
