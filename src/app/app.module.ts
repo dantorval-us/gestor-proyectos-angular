@@ -30,6 +30,7 @@ import { ProyectoService } from './services/proyecto.service';
 import { NuevaTareaComponent } from './components/nueva-tarea/nueva-tarea.component';
 import { MenuUDComponent } from './components/menu-ud/menu-ud.component';
 import { EditarProyectoComponent } from './components/editar-proyecto/editar-proyecto.component';
+import { EditarTareaComponent } from './components/editar-tarea/editar-tarea.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { EditarProyectoComponent } from './components/editar-proyecto/editar-pro
     NuevaTareaComponent,
     MenuUDComponent,
     EditarProyectoComponent,
+    EditarTareaComponent,
   ],
   imports: [
     BrowserModule,

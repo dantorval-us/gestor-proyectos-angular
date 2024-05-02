@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TareaService } from '../../services/tarea.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditarTareaComponent } from '../editar-tarea/editar-tarea.component';
 
 @Component({
   selector: 'app-tarea',
@@ -9,40 +11,40 @@ import { TareaService } from '../../services/tarea.service';
 export class TareaComponent implements OnInit {
 
   @Input() tareaId: string|undefined;
-  @Input() nombre: string = "";
-  @Input() posicion: number = 0;
   @Input() idColumna: string = "";
-  nombreEdit: string = '';
+  @Input() nombre: string = "";
+  @Input() descripcion: string = "";
+  @Input() posicion: number = 0;
 
-  constructor(private tareaService:TareaService ) {};
+  constructor(
+    private tareaService:TareaService, 
+    public dialog: MatDialog
+  ) {};
 
   modoEdicion:boolean = false;
   muestraBtnMas:boolean = false;
   desplegado:boolean = false;
 
   ngOnInit(): void {
-    this.nombreEdit = this.nombre;
-  }
-
-  updateTarea() {
-    this.tareaService.updateTarea(this.tareaId!, this.nombre);
-    this.modoEdicion = false;
   }
 
   deleteTarea() {
     this.tareaService.deleteTarea(this.tareaId!, this.posicion, this.idColumna);
   }
-  
-  cambiaModoEdicion(): void {
-    this.modoEdicion = !this.modoEdicion;
-    this.enfocarNombre();
-    this.nombre = this.nombreEdit;
+
+  handleUpdate() {
+    this.openDialog();
   }
 
-  enfocarNombre(): void {
-    setTimeout(() => {
-      document.getElementById("nombre")?.focus()
-    }, 0);
+  openDialog(): void {
+    this.dialog.open(EditarTareaComponent, {
+      data: {
+        tareaId: this.tareaId,
+        nombre: this.nombre,
+        descripcion: this.descripcion 
+      },
+      panelClass: []
+    });
   }
 
   mostrarBtnMas() {

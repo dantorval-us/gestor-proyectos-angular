@@ -30,7 +30,8 @@ export class ProyectoComponent {
 
   openDialog(): void {
     this.dialog.open(EditarProyectoComponent, {
-      data: { proyectoId: this.proyectoId,
+      data: { 
+        proyectoId: this.proyectoId,
         nombre: this.nombre,
         descripcion: this.descripcion  
       },

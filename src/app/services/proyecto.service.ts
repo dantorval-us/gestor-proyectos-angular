@@ -33,8 +33,8 @@ export class ProyectoService {
 
   updateProyecto(id: string, nombre: string, descripcion: string) {
     const proyectoRef = doc(this.firestore, `proyectos/${id}`);
-    return updateDoc(proyectoRef, 
-      {nombre: nombre,
+    return updateDoc(proyectoRef, {
+        nombre: nombre,
         descripcion: descripcion
       })
   }

@@ -28,9 +28,12 @@ export class TareaService {
     return snapshot.data().count;
   }
 
-  updateTarea(id: string, nuevoNombre: string) {
+  updateTarea(id: string, nuevoNombre: string, descripcion: string) {
     const tareaRef = doc(this.firestore, `tareas/${id}`);
-    return updateDoc(tareaRef, {nombreTarea: nuevoNombre})
+    return updateDoc(tareaRef, {
+      nombreTarea: nuevoNombre,
+      descripcion: descripcion
+    })
   }
 
   updateColumnaTarea(id:string, nuevaColumna:string) {

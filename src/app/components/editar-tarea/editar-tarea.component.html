@@ -1,14 +1,14 @@
-<form [formGroup]="formulario" (ngSubmit)="updateProyecto()">
+<form [formGroup]="formulario" (ngSubmit)="updateTarea()">
 
-  <div *ngIf="!editNombre" mat-dialog-title class="nombre-proy-dialog" (click)="cambiarEditNombre(); enfocarNombre()">
+  <div *ngIf="!editNombre" mat-dialog-title class="" (click)="cambiarEditNombre(); enfocarNombre()">
     {{nombre}}
-    <mat-icon matSuffix class="">edit</mat-icon>
+    <mat-icon matSuffix class="edit-icon-edit-proy">edit</mat-icon>
   </div>
 
   <div *ngIf="editNombre">
     <mat-form-field appearance="outline">
       <input matInput id="nombre" formControlName="nombre">
-      <button mat-icon-button matSuffix class="btn-cuadrado" (click)="handleCheckNombre()">
+      <button mat-icon-button matSuffix class="" (click)="handleCheckNombre()">
         <mat-icon>check</mat-icon>
       </button>
     </mat-form-field>
@@ -20,7 +20,7 @@
       formControlName="descripcion"
       class="text-area-desc"
       rows="3" 
-      placeholder="Descripción">
+      placeholder="Añada una descripción más detallada...">
     </textarea>
   </mat-form-field>
 

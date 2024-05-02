@@ -1,22 +1,19 @@
 <div class="d-flex justify-content-between align-items-start tarjeta" (mouseenter)="mostrarBtnMas()" (mouseleave)="ocultaBtnMas()">
-  <h3 *ngIf="!modoEdicion" (dblclick)="cambiaModoEdicion(); enfocarNombre()">
+  <h3>
     {{ nombre }}
   </h3>
-
-  <mat-form-field *ngIf="modoEdicion" (keydown.enter)="updateTarea()">
-    <input matInput id="nombre" [(ngModel)]="nombre" (blur)="cambiaModoEdicion()"/>
-    <button matSuffix mat-icon-button (mousedown)="updateTarea()">
-      <mat-icon>check</mat-icon>
-    </button>
-  </mat-form-field>
 
   <app-menu-ud *ngIf="!modoEdicion && muestraBtnMas" (click)="despliega()" 
     [orientacion]="'vertical'"
     [propagation]="true"
-    (editarEvent)="cambiaModoEdicion()"
+    (editarEvent)="openDialog()"
     (eliminarEvent)="deleteTarea()"
     (cierraMenu)="ocultaBtnMas()"
   >
   </app-menu-ud>
+</div>
+
+<div *ngIf="true" (click)="handleUpdate()">
+  <mat-icon>notes</mat-icon>
 </div>
 
