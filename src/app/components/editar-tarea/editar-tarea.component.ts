@@ -18,7 +18,8 @@ export class EditarTareaComponent implements OnInit {
   estimacion = this.data.estimacion;
   icono = this.data.icono;
   editNombre: boolean = false;
-  estimacionOpciones!: any[];
+  estimacionOpciones: any[] = [];
+  iconos: { nombre: string, valor: string }[] = [];
 
   constructor(
     private dataService: DataService,
@@ -38,6 +39,9 @@ export class EditarTareaComponent implements OnInit {
     this.dataService.getOptions().subscribe(data => {
       this.estimacionOpciones = data;
     });
+    this.dataService.getIconos().subscribe(data => {
+      this.iconos = data;
+    });
   }
 
   updateTarea() {
@@ -45,7 +49,8 @@ export class EditarTareaComponent implements OnInit {
       this.tareaId,
       this.formulario.value.nombre,
       this.formulario.value.descripcion,
-      this.estimacion
+      this.estimacion,
+      this.icono
     );
   }
 
@@ -66,6 +71,10 @@ export class EditarTareaComponent implements OnInit {
 
   handleSetEstimacion(puntos: number) {
     this.estimacion = puntos;
+  }
+
+  handleSetIcono(icono: string) {
+    this.icono = icono;
   }
 
 }

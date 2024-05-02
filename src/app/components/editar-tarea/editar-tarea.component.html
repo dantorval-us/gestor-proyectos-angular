@@ -45,14 +45,14 @@
       <span>Añadir a la tarjeta</span>
       <button
         type="button"
-        mat-button [matMenuTriggerFor]="menu"
+        mat-button [matMenuTriggerFor]="menuEstimacion"
       >
         <mat-icon>style</mat-icon>
         Estimación
       </button>
       <button
         type="button"
-        mat-button
+        mat-button [matMenuTriggerFor]="menuIcono"
       >
         <mat-icon>insert_photo</mat-icon>
         Icono
@@ -67,9 +67,19 @@
   </div>
 </form>
 
-<mat-menu #menu="matMenu" >
+<mat-menu #menuEstimacion="matMenu" >
   <span>¿Cómo de compleja es esta tarea?</span>
   <button mat-menu-item *ngFor="let estimacion of estimacionOpciones" (click)="handleSetEstimacion(estimacion.puntos)">
     {{ estimacion.puntos }}
+  </button>
+</mat-menu>
+
+<mat-menu #menuIcono="matMenu" >
+  <span>Marca esta tarea con un icono</span>
+  <button mat-menu-item (click)="handleSetIcono('No marcar')">
+    No marcar
+  </button>
+  <button mat-menu-item *ngFor="let icono of iconos" (click)="handleSetIcono(icono.valor)">
+    <img [src]="'assets/images/icons/' + icono.nombre" alt="{{ icono.valor }}">
   </button>
 </mat-menu>

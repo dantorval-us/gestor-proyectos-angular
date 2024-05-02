@@ -13,4 +13,8 @@ export class DataService {
     return this.http.get<any[]>('assets/data/puntos-estimacion.json');
   }
 
+  getIconos(): Observable<{nombre: string, valor: string}[]> {
+    return this.http.get<{ nombre: string, valor: string }[]>('assets/data/iconos-tarea.json');
+  }
+
 }

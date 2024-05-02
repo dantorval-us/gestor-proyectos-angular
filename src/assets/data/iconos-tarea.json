@@ -1,0 +1,6 @@
+[
+  { "nombre": "feature.png", "valor": "Funcionalidad" },
+  { "nombre": "pintar.png", "valor": "Estilo" },
+  { "nombre": "test.png", "valor": "Test" },
+  { "nombre": "oruga.png", "valor": "Bug" }
+]
