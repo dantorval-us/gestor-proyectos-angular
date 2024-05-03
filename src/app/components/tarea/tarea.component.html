@@ -1,19 +1,41 @@
-<div class="d-flex justify-content-between align-items-start tarjeta" (mouseenter)="mostrarBtnMas()" (mouseleave)="ocultaBtnMas()">
-  <h3>
-    {{ nombre }}
-  </h3>
-
-  <app-menu-ud *ngIf="!modoEdicion && muestraBtnMas" (click)="despliega()" 
-    [orientacion]="'vertical'"
-    [propagation]="true"
-    (editarEvent)="openDialog()"
-    (eliminarEvent)="deleteTarea()"
-    (cierraMenu)="ocultaBtnMas()"
-  >
+<div 
+  class="tarjeta d-flex flex-column" 
+  (mouseenter)="mostrarBtnMas()" (mouseleave)="ocultaBtnMas()"
+  [ngClass]="{
+    'tarea-finalizada': nombreColumna == 'Finalizada' || nombreColumna == 'Finished', 
+    'tarea-backlog': nombreColumna == 'Backlog'
+  }"
+>
+  <div class="d-flex justify-content-between" (dblclick)="openDialog()">
+    <h3 class="align-self-center">
+      {{ nombre }}
+    </h3>
+    <app-menu-ud [ngClass]="{'muestra-menu': muestraBtnMas, 'oculta-menu': !muestraBtnMas}" (click)="despliega()" 
+      [orientacion]="'vertical'"
+      [propagation]="true"
+      (editarEvent)="openDialog()"
+      (eliminarEvent)="deleteTarea()"
+      (cierraMenu)="ocultaBtnMas()"
+    >
   </app-menu-ud>
-</div>
+  </div>
 
-<div *ngIf="true" (click)="handleUpdate()">
-  <mat-icon>notes</mat-icon>
+  <div *ngIf="icono || descripcion || estimacion" class="atributos-tarea" (click)="openDialog()">
+    <div *ngIf="icono" class="atributo-tarea-1 icono-tarea">
+      <img [src]="'assets/images/icons/' + icono.nombre" 
+        alt="{{ icono.valor }}"
+        matTooltip="{{ icono.valor }}"
+      >
+    </div>
+    <div *ngIf="descripcion" class="atributo-tarea-2 notes-icon-desc-tarea">
+      <mat-icon matTooltip="Esta tarea cuenta con una descripción">notes</mat-icon>
+    </div>
+    <div *ngIf="estimacion"
+      matTooltip="Estimación de la tarea"
+      class="atributo-tarea-3 estimacion-tarea"
+    >
+      {{ estimacion }}
+    </div>
+  </div>
 </div>
 

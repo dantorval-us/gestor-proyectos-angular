@@ -36,6 +36,7 @@ export class EditarTareaComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    console.log('...', this.icono);
     this.dataService.getOptions().subscribe(data => {
       this.estimacionOpciones = data;
     });
@@ -45,12 +46,13 @@ export class EditarTareaComponent implements OnInit {
   }
 
   updateTarea() {
+    console.log('update:', this.icono);
     this.tareaService.updateTarea(
       this.tareaId,
       this.formulario.value.nombre,
       this.formulario.value.descripcion,
       this.estimacion,
-      this.icono
+      this.icono.valor
     );
   }
 
@@ -73,7 +75,7 @@ export class EditarTareaComponent implements OnInit {
     this.estimacion = puntos;
   }
 
-  handleSetIcono(icono: string) {
+  handleSetIcono(icono: { nombre: string, valor: string } | null = null) {
     this.icono = icono;
   }
 

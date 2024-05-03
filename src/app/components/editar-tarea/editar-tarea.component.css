@@ -2,6 +2,141 @@
   display: flex;
 }
 
+.nombre-tarea-dialog {
+  display: flex;
+  align-items: center;
+}
+
+.nombre-tarea-dialog:hover {
+  color: black;
+}
+
 .dc-tarea-ppal {
-  flex: 0 0 75%;
+  flex: 0 0 73%;
+}
+
+.dc-tarea-ppal span{
+  padding-right: 0.5rem;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.dc-tarea-ppal div:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.dc-tarea-ppal div:last-child {
+  margin-bottom: 0.5rem;
+}
+
+.dc-tarea-ppal > div:nth-child(2) {
+  margin-top: -1rem;
+}
+
+.dc-tarea-lateral {
+  flex: 0 0 20%;
+}
+
+
+.dc-tarea-lateral span:first-child {
+  font-size: small;
+}
+
+.dc-tarea-lateral button {
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-align: left;
+  width: 100%;
+}
+
+.dc-tarea-lateral .mat-button {
+  line-height: 0;
+  padding: 6px;
+  font-size: medium;
+
+  & .mat-icon {
+    font-size: 1rem;
+    max-height: 1rem;
+    overflow: hidden;
+  }
+}
+
+.edit-icon-edit-tarea {
+  font-size: 1rem !important;
+  margin-left: auto;
+}
+
+.nombre-tarea-dialog .edit-icon-edit-tarea {
+  display: none;
+}
+
+.nombre-tarea-dialog:hover .edit-icon-edit-tarea {
+  display: inline-block;
+}
+
+.text-area-desc {
+  border-color: var(--secondary-color);
+  resize: none;
+}
+
+.dc-tarea-ppal .estimacion-tarea,
+.dc-tarea-ppal .icono-tarea  {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 90%;
+  }
+}
+
+.atributo-tarea-undefined {
+  cursor: pointer;
+  font-size: medium;
+
+  &:hover {
+    background-color: rgb(243, 243, 243);
+    border-radius: 5px;
+  }
+}
+
+.menu-span {
+  font-weight: 700;
+  font-size: medium;
+  padding: 0 .7rem;
+}
+
+.menu-tarea hr {
+  max-width: 92%;
+  margin: 0 auto;
+  border: 0;
+  border-top: 1px solid;
+}
+
+.menu-tarea {
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  max-width: 92%;
+  margin: 0 auto;
+}
+
+.menu-tarea-first {
+  border-top: none;
+  padding-top: 0.5rem;
+}
+
+.no-marcar {
+  margin-top: 0.5rem;
+  padding-left: 1rem !important;
+}
+
+.mat-menu-item {
+  font-size: medium;
+  line-height: 0;
+  height: 2.2rem;
+  padding: 0 0 0 0.5rem;
+}
+
+.mat-form-field {
+  width: 100%;
 }

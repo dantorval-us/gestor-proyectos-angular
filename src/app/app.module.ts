@@ -33,6 +33,7 @@ import { EditarProyectoComponent } from './components/editar-proyecto/editar-pro
 import { EditarTareaComponent } from './components/editar-tarea/editar-tarea.component';
 import { DataService } from './services/data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

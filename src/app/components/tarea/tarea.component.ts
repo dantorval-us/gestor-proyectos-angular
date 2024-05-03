@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TareaService } from '../../services/tarea.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditarTareaComponent } from '../editar-tarea/editar-tarea.component';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-tarea',
@@ -15,19 +16,24 @@ export class TareaComponent implements OnInit {
   @Input() nombre: string = "";
   @Input() descripcion: string = "";
   @Input() estimacion: number = 0;
-  @Input() icono: string = "";
+  @Input() nombreIcono: string = "";
   @Input() posicion: number = 0;
+  @Input() nombreColumna: string = "";
+  icono: { nombre: string, valor: string } | undefined;
 
   constructor(
+    private dataService: DataService,
     private tareaService:TareaService, 
     public dialog: MatDialog
   ) {};
 
-  modoEdicion:boolean = false;
   muestraBtnMas:boolean = false;
   desplegado:boolean = false;
 
   ngOnInit(): void {
+    this.dataService.getIcono(this.nombreIcono).subscribe(data => {
+      this.icono = data;
+    });
   }
 
   deleteTarea() {

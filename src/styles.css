@@ -25,7 +25,29 @@ button[type="submit"] {
   line-height: 0;
 }
 
+.icono-tarea, .icono-tarea img{
+  height: 1rem;
+}
+
+.estimacion-tarea {
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mat-icon-button:hover {
   color: #000000;
   background-color: #e4e4e4;
+}
+
+.mat-tooltip {
+  font-size: 0.7rem;
+  padding: 0.2rem;
 }

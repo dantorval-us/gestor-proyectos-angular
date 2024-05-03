@@ -1,8 +1,8 @@
 <form [formGroup]="formulario" (ngSubmit)="updateTarea()">
 
-  <div *ngIf="!editNombre" mat-dialog-title class="" (click)="cambiarEditNombre(); enfocarNombre()">
+  <div *ngIf="!editNombre" mat-dialog-title class="nombre-tarea-dialog" (click)="cambiarEditNombre(); enfocarNombre()">
     {{nombre}}
-    <mat-icon matSuffix class="edit-icon-edit-proy">edit</mat-icon>
+    <mat-icon matSuffix class="edit-icon-edit-tarea">edit</mat-icon>
   </div>
 
   <div *ngIf="editNombre">
@@ -15,28 +15,39 @@
   </div>
 
   <div class="dc-tarea justify-content-between">
+
     <div class="dc-tarea-ppal">
-      <span>Descripción:</span>
-      <mat-form-field appearance="outline">
-        <textarea 
-          matInput 
-          formControlName="descripcion"
-          class="text-area-desc"
-          rows="3" 
-          placeholder="Añada una descripción más detallada...">
-        </textarea>
-      </mat-form-field>
+      <div class="d-flex flex-column">
+        <span>Descripción:</span>
+        <mat-form-field appearance="outline">
+          <textarea 
+            matInput 
+            formControlName="descripcion"
+            class="text-area-desc"
+            rows="3" 
+            placeholder="Añada una descripción más detallada...">
+          </textarea>
+        </mat-form-field>
+      </div>
     
       <div class="d-flex">
         <span>Estimación:</span>
-        <div *ngIf="estimacion">{{ estimacion }}</div>
-        <div *ngIf="!estimacion">No definida.</div>
+        <div *ngIf="estimacion" class="estimacion-tarea" [matMenuTriggerFor]="menuEstimacion">
+          {{ estimacion }}
+        </div>
+        <div *ngIf="!estimacion" class="atributo-tarea-undefined" [matMenuTriggerFor]="menuEstimacion">
+          No definida.
+        </div>
       </div>
 
       <div class="d-flex">
         <span>Icono:</span>
-        <div *ngIf="icono">{{ icono }}</div>
-        <div *ngIf="!icono">No definido.</div>
+        <div *ngIf="icono" [matMenuTriggerFor]="menuIcono">
+          <img [src]="'assets/images/icons/' + icono.nombre" alt="{{ icono.valor }}" class="icono-tarea">  
+        </div>
+        <div *ngIf="!icono" class="atributo-tarea-undefined" [matMenuTriggerFor]="menuIcono">
+          No definido.
+        </div>
       </div>
   
     </div>
@@ -67,19 +78,32 @@
   </div>
 </form>
 
-<mat-menu #menuEstimacion="matMenu" >
-  <span>¿Cómo de compleja es esta tarea?</span>
-  <button mat-menu-item *ngFor="let estimacion of estimacionOpciones" (click)="handleSetEstimacion(estimacion.puntos)">
-    {{ estimacion.puntos }}
-  </button>
+<mat-menu #menuEstimacion="matMenu">
+  <span class="menu-span">¿Cómo de compleja es esta tarea?</span>
+  <div *ngFor="let estimacion of estimacionOpciones; let isFirst = first" 
+     [class.menu-tarea-first]="isFirst" 
+     class="menu-tarea" 
+     (click)="handleSetEstimacion(estimacion.puntos)">
+    <button mat-menu-item >
+      {{ estimacion.puntos }}
+    </button>
+  </div>
 </mat-menu>
 
 <mat-menu #menuIcono="matMenu" >
-  <span>Marca esta tarea con un icono</span>
-  <button mat-menu-item (click)="handleSetIcono('No marcar')">
+  <span class="menu-span">Marca esta tarea con un icono</span>
+  <button class="no-marcar" mat-menu-item (click)="handleSetIcono(null)">
     No marcar
   </button>
-  <button mat-menu-item *ngFor="let icono of iconos" (click)="handleSetIcono(icono.valor)">
-    <img [src]="'assets/images/icons/' + icono.nombre" alt="{{ icono.valor }}">
-  </button>
+
+  <div *ngFor="let icono of iconos"
+    class="menu-tarea"
+    (click)="handleSetIcono(icono)"
+  >
+    <button mat-menu-item>
+      <img [src]="'assets/images/icons/' + icono.nombre" alt="{{ icono.valor }}" class="icono-tarea">
+      {{icono.valor}}
+    </button>
+  </div>
+
 </mat-menu>
