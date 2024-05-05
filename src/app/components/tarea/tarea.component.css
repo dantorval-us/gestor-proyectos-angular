@@ -78,7 +78,7 @@ h3 {
 .atributo-tarea-2 {
   grid-column: 2;
   justify-self: center;
-  max-height: 1rem;
+  max-height: 1.2rem;
   overflow: hidden;
 }
 
@@ -91,6 +91,7 @@ h3 {
   color: rgb(150, 150, 150);
   font-size: 1.1rem;
   margin-bottom: 0;
+  padding-top: 0.2rem;
 }
 
 .mat-form-field {
