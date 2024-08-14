@@ -1,27 +1,32 @@
-# GestorProyectos
+# Gestor de Proyectos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+## Sobre el proyecto
 
-## Development server
+**Gestor de Proyectos** es un aplicación web desarrollada con Angular 13.1.0 para administrar diferentes proyectos mediante tablero Kanban.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Se llevó a cabo como Trabajo Fin de Grado, consistente en un estudio comparativo del desarrollo de aplicaciones web con Angular y React.
 
-## Code scaffolding
+El repositorio de la aplicación web equivalente a esta, desarrollada con React, es [https://github.com/dantorval-us/gestor-proyectos-react](https://github.com/dantorval-us/gestor-proyectos-react).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Funcionalidades
 
-## Build
+<ul>
+  <li>CRUD de Tableros, Columnas y Tareas.</li>
+  <li>Drag and Drop de Columnas y Tareas.</li>
+  <li>Iconos para indicar tipo y estimación de las Tareas.</li>
+  <li>Descripción detallada opcional de los Tableros y Tareas.</li>
+  <li>Multiusuario.</li>
+</ul>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<img src="https://github.com/dantorval-us/gestor-proyectos-angular/blob/main/src/assets/images/readme/panel.JPG" width="800" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br>
+<img src="https://github.com/dantorval-us/gestor-proyectos-angular/blob/main/src/assets/images/readme/tablero.JPG" width="800" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br>
+<img src="https://github.com/dantorval-us/gestor-proyectos-angular/blob/main/src/assets/images/readme/tarea-detalle.JPG" width="800" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## ¡Pruébelo!
 
-## Running end-to-end tests
+La aplicación se encuentra disponible en [https://gestor-proyectos-angular.web.app/](https://gestor-proyectos-angular.web.app/).
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Para probarla localmente, ejecute `ng serve` y navegue a `http://localhost:4200/`.
